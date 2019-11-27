@@ -57,7 +57,6 @@ function moveMetapods() {
   }
 }
 
-
 function animate() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
   window.setTimeout(() => requestAnimationFrame(animate), 300);

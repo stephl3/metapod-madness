@@ -1,0 +1,12 @@
+@import './reset.css';
+
+canvas {
+  border: 1px solid black;
+  background-image: url('../images/grass_background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+}
