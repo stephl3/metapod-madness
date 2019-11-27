@@ -1,0 +1,21 @@
+{
+  "name": "metapod-madness",
+  "version": "1.0.0",
+  "description": "A remastered minigame from the N64 classic, Pokemon Stadium",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack --mode=development --watch"
+  },
+  "keywords": [],
+  "author": "Stephen Lee",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    
+  }
+}
