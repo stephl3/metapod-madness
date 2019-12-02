@@ -34,7 +34,7 @@ class Game {
   }
 
   _randomMetapodImg() {
-    const metapodImgs = ['../images/metapod.png', '../images/shiny_metapod.png'];
+    const metapodImgs = ['./images/metapod.png', './images/shiny_metapod.png'];
     const index = Math.round(Math.random());
     return metapodImgs[index];
   }
@@ -72,7 +72,7 @@ class Game {
     for (let i = 0; i < 4; i++) {
       this.add(new Boulder({
         idx: i,
-        img: '../images/boulder1.png',
+        img: './images/boulder1.png',
         pos: boulderPositions[i],
         vel: [0, -12],
         width: 80,
