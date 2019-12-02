@@ -1,12 +1,17 @@
-@import './reset.css';
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 canvas {
+  margin-top: 50px;
   border: 1px solid black;
   background-image: url('../images/grass_background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-body {
-  margin: 0;
+  width: 800px;
+  height: 600px;
 }

@@ -1,12 +1,14 @@
-var canvas = document.getElementById('viewport'),
-  context = canvas.getContext('2d');
+import Game from './game.js';
+import GameView from './game_view.js';
+// import '../stylesheets/index.css';
 
-make_base();
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("viewport");
+  canvas.width = 800;
+  canvas.height = 600;
 
-function make_base() {
-  base_image = new Image();
-  base_image.src = 'img/base.png';
-  base_image.onload = function () {
-    context.drawImage(base_image, 0, 0);
-  }
-}
+  const ctx = canvas.getContext("2d");
+  const game = new Game();
+
+  new GameView(game, ctx).start();
+});
