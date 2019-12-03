@@ -5,21 +5,25 @@ import Metapod from './metapod';
 class Boulder extends MovingObject {
   constructor(options) {
     super(options);
+    // this.shadowPos = [
+    //   this.pos[0] + this.width / 2,
+    //   this.pos[1] + this.height * 1.2
+    // ];
+    // this.shadowSize = [this.width / 2, this.height / 5];
   }
 
   draw(ctx) {
-    // this.drawShadow(ctx);
     super.draw(ctx);
   }
 
   drawShadow(ctx) {
-    const shadowSX = this.game.dimensionX * (3 / 16);
-    const shadowSY = this.game.dimensionY * (2 / 5);
+    const [shadowSX, shadowSY] = this.shadowPos;
+    const [shadowWidth, shadowHeight] = this.shadowSize;
     ctx.beginPath();
     ctx.fillStyle = "rgba(41, 41, 41, 0.7)";
     ctx.ellipse(
       shadowSX, shadowSY,
-      this.width / 2, this.height / 5,
+      shadowWidth, shadowHeight,
       0, Math.PI * 2, false
     );
     ctx.fill();

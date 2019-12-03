@@ -1,6 +1,7 @@
 import Metapod from './metapod';
 import Boulder from './boulder';
 import Berry from './berry';
+import Shadow from './shadow';
 // import Util from './util';
 
 
@@ -13,12 +14,15 @@ class Game {
     this.metapods = [];
     this.boulders = [];
     this.berries = [];
+    this.shadows = [];
 
 
     this.addBoulders();
+    this.addShadows();
 
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
+    this.addShadows = this.addShadows.bind(this);
     this.draw = this.draw.bind(this);
     this.step = this.step.bind(this);
   }
@@ -30,6 +34,8 @@ class Game {
       this.boulders.push(object);
     } else if (object instanceof Berry) {
       this.berries.push(object);
+    } else if (object instanceof Shadow) {
+      this.shadows.push(object);
     } else {
       throw new Error("WOT DIS");
     }
@@ -65,10 +71,10 @@ class Game {
 
   addBoulders() {
     const boulderPositions = [
-      [this.dimensionX * (3 / 16), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (6 / 16), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (9 / 16), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (12 / 16), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (15 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (35 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (55 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (75 / 100), this.dimensionY * (2 / 5)],
     ];
 
     for (let i = 0; i < 4; i++) {
@@ -88,10 +94,10 @@ class Game {
 
   addBerries() {
     const berryPositions = [
-      [this.dimensionX * (3 / 16), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (6 / 16), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (9 / 16), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (12 / 16), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (15 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (35 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (55 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (75 / 100), this.dimensionY * (2 / 5)],
     ];
 
     for (let i = 0; i < 4; i++) {
@@ -109,8 +115,37 @@ class Game {
     // window.setTimeout(() => this.addBoulders(), 1000);
   }
 
+  addShadows() {
+    const shadowPositions = [
+      [this.dimensionX * (2 / 8), this.dimensionY * (.52)],
+      [this.dimensionX * (4 / 8), this.dimensionY * (.52)],
+      [this.dimensionX * (4 / 8), this.dimensionY * (.52)],
+      [this.dimensionX * (6 / 8), this.dimensionY * (.52)],
+    ];
+    const shadowVelocities = [
+      [-0.7, 1.3],
+      [-0.7, 1.3],
+      [0.7, 1.3],
+      [0.7, 1.3],
+    ]
+
+    for (let i = 0; i < 4; i++) {
+      this.add(new Shadow({
+        idx: i,
+        img: null,
+        pos: shadowPositions[i],
+        vel: shadowVelocities[i],
+        width: 60,
+        height: 15,
+        game: this
+      }))
+    }
+
+    // window.setTimeout(() => this.addBoulders(), 1000);
+  }
+
   allObjects() {
-    return [].concat(this.metapods, this.boulders, this.berries);
+    return [].concat(this.metapods, this.boulders, this.berries, this.shadows);
   }
 
   checkCollisions() {
