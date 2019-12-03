@@ -1,6 +1,6 @@
 import Metapod from './metapod';
 import Boulder from './boulder';
-// import Berry from './berry';
+import Berry from './berry';
 // import Util from './util';
 
 
@@ -12,11 +12,13 @@ class Game {
 
     this.metapods = [];
     this.boulders = [];
-    // this.berries = [];
+    this.berries = [];
 
 
     this.addBoulders();
 
+    this.addBoulders = this.addBoulders.bind(this);
+    this.addBerries = this.addBerries.bind(this);
     this.draw = this.draw.bind(this);
     this.step = this.step.bind(this);
   }
@@ -72,7 +74,7 @@ class Game {
     for (let i = 0; i < 4; i++) {
       this.add(new Boulder({
         idx: i,
-        img: './images/boulder1.png',
+        img: 'images/boulder1.png',
         pos: boulderPositions[i],
         vel: [0, -12],
         width: 80,
@@ -81,12 +83,34 @@ class Game {
       }))
     }
 
-    window.setTimeout(() => this.addBoulders(), 3000);
+    window.setTimeout(() => this.addBerries(), 1000);
+  }
+
+  addBerries() {
+    const berryPositions = [
+      [this.dimensionX * (3 / 16), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (6 / 16), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (9 / 16), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (12 / 16), this.dimensionY * (2 / 5)],
+    ];
+
+    for (let i = 0; i < 4; i++) {
+      this.add(new Berry({
+        idx: i,
+        img: 'images/gold_razz_berry.png',
+        pos: berryPositions[i],
+        vel: [0, -12],
+        width: 80,
+        height: 80,
+        game: this
+      }))
+    }
+
+    // window.setTimeout(() => this.addBoulders(), 1000);
   }
 
   allObjects() {
-    return [].concat(this.metapods, this.boulders);
-    // add berries later
+    return [].concat(this.metapods, this.boulders, this.berries);
   }
 
   checkCollisions() {

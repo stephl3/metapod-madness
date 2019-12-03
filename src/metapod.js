@@ -6,16 +6,21 @@ class Metapod extends MovingObject {
     super(options);
     this.startPosX = options.startPosX;
     this.HP = 200;
+    this.initImg = options.img;
   }
 
   _randomMetapodImg() {
-    const metapodImgs = ['../images/metapod.png', 'images/shiny_metapod.png'];
+    const metapodImgs = ['images/metapod.png', 'images/shiny_metapod.png'];
     const index = Math.round(Math.random());
     return metapodImgs[index];
   }
 
-  _metapodTwitch() {
-
+  harden() {
+    if (this.game.metapodsHardened[this.idx]) {
+      this.img = 'images/harden_metapod.png';
+    } else {
+      this.img = this.initImg;
+    }
   }
 
   draw(ctx) {

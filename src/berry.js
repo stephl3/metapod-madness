@@ -2,7 +2,7 @@ import Util from './util';
 import MovingObject from './moving_object';
 import Metapod from './metapod';
 
-class Boulder extends MovingObject {
+class Berry extends MovingObject {
   constructor(options) {
     super(options);
   }
@@ -52,18 +52,18 @@ class Boulder extends MovingObject {
 
   collideWith(metapod) {
     if (metapod.hardened) {
-      this.break();
+      this.bounce();
       return true;
     } else if (!metapod.hardened) {
-      metapod.smash();
+      metapod.absorb();
       return true;
     }
     return false;
   }
 
-  break() {
+  bounce() {
 
   }
 };
 
-export default Boulder;
+export default Berry;
