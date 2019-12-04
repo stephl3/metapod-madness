@@ -55,7 +55,7 @@ class Berry extends MovingObject {
       this.bounce();
       return true;
     } else if (!metapod.hardened) {
-      metapod.absorb();
+      // metapod.absorb();
       return true;
     }
     return false;

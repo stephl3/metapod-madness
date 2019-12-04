@@ -2,8 +2,8 @@ class GameView {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
+    this.keys = [192, 67, 77, 8];
     this.metapods = this.game.addMetapods();
-    this.metapodsHardened = [false, false, false, false];
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.start = this.start.bind(this);
@@ -11,47 +11,32 @@ class GameView {
   }
 
   bindKeyHandlers () {
-    const keys = ["1", "4", "7", "0"];
+    const keys = this.keys;
     
     const keyDownHandler = (e) => {
       for (let i = 0; i < 4; i++) {
-        if (e.key === keys[i]) {
-          this.metapodsHardened[i] = true;
+        if (e.keyCode == keys[i]) {
+          this.game.metapodsHardened[i] = true;
         };
       };
     };
     
     const keyUpHandler = (e) => {
       for (let i = 0; i < 4; i++) {
-        if (e.key === keys[i]) {
-          this.metapodsHardened[i] = false;
+        if (e.keyCode == keys[i]) {
+          this.game.metapodsHardened[i] = false;
         };
       };
     };
+
     document.addEventListener("keydown", keyDownHandler, false)
     document.addEventListener("keyup", keyUpHandler, false)
   };
 
-// function keyDownHandler(e) {
-//   if (e.key == "Right" || e.key == "ArrowRight") {
-//     rightPressed = true;
-//   }
-//   else if (e.key == "Left" || e.key == "ArrowLeft") {
-//     leftPressed = true;
-//   }
-// }
+  load() {
+    
+  }
 
-// function keyUpHandler(e) {
-//   if (e.key == "Right" || e.key == "ArrowRight") {
-//     rightPressed = false;
-//   }
-//   else if (e.key == "Left" || e.key == "ArrowLeft") {
-//     leftPressed = false;
-//   }
-// }
-
-  // load() {}
-  
   start() {
     this.bindKeyHandlers();
     this.lastTime = 0;

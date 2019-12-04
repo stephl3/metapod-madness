@@ -2,6 +2,7 @@ import Game from './game.js';
 import GameView from './game_view.js';
 // import '../stylesheets/index.css';
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("viewport");
   canvas.width = 800;

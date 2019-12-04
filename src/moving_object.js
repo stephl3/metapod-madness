@@ -10,7 +10,7 @@ class MovingObject {
     this.height = options.height;
     this.game = options.game;
 
-    this.collideWith.bind(this);
+    this.isCollidedWith.bind(this);
   }
 
   draw(ctx) {
@@ -22,9 +22,13 @@ class MovingObject {
     );
   }
 
-  collideWith(metapod) {
-    const centerDist = Util.dist(this.pos, metapod.pos);
-    return centerDist < (this.width / 2 + metapod.width / 2);
+  isCollidedWith(otherObject) {
+    const pos1 = this.pos;
+    const pos2 = otherObject.pos;
+    const centerDist = Math.sqrt(
+      Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
+    );
+    return centerDist < (this.width / 2 + otherObject.width / 2);
   }
 
   move(timeDelta) {

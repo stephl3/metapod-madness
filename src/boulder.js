@@ -54,19 +54,28 @@ class Boulder extends MovingObject {
     super.move(timeDelta);
   }
 
+  isCollidedWith(otherObject) {
+    super.isCollidedWith(otherObject);
+  }
+
   collideWith(metapod) {
-    if (metapod.hardened) {
+    const hardened = this.game.metapodsHardened[metapod.idx];
+    if (hardened) {
       this.break();
       return true;
-    } else if (!metapod.hardened) {
+    } else if (!hardened) {
       metapod.smash();
+      this.bounce();
       return true;
     }
     return false;
   }
 
   break() {
-
+    this.img = '../images/boulder2.png';
+    window.setTimeout(() => {
+      this.img = '../images/boulder3.png';
+    }, 100);
   }
 };
 

@@ -23,6 +23,13 @@ class Metapod extends MovingObject {
     }
   }
 
+  smash() {
+    this.height /= 2;
+    window.setTimeout(() => {
+      this.height *= 2;
+    }, 500);
+  }
+
   draw(ctx) {
     this.drawShadow(ctx);
     this.drawHPBar(ctx);

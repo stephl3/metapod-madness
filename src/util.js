@@ -1,4 +1,8 @@
 class Util {
+  constructor() {
+    this.dist = this.dist.bind(this);
+  }
+
   // Normalize the length of the vector to 1, maintaining direction.
   dir(vec) {
     const norm = Util.norm(vec);

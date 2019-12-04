@@ -29,3 +29,7 @@ body {
   width: 800px;
   height: 600px;
 }
+
+#viewport.menu {
+  background-image: url('../images/menu_background.jpg');
+}

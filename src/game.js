@@ -12,13 +12,14 @@ class Game {
     this.fps = 32;
 
     this.metapods = [];
+    this.metapodsHardened = [false, false, false, false];
     this.boulders = [];
     this.berries = [];
     this.shadows = [];
 
 
-    this.addBoulders();
     this.addShadows();
+    this.addBoulders();
 
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
@@ -89,7 +90,10 @@ class Game {
       }))
     }
 
-    window.setTimeout(() => this.addBerries(), 1000);
+    window.setTimeout(() => {
+      this.addShadows();
+      this.addBerries();
+    }, 1000);
   }
 
   addBerries() {
@@ -117,16 +121,16 @@ class Game {
 
   addShadows() {
     const shadowPositions = [
-      [this.dimensionX * (2 / 8), this.dimensionY * (.52)],
-      [this.dimensionX * (4 / 8), this.dimensionY * (.52)],
-      [this.dimensionX * (4 / 8), this.dimensionY * (.52)],
-      [this.dimensionX * (6 / 8), this.dimensionY * (.52)],
+      [this.dimensionX * (2 / 8) - 40, this.dimensionY * (.52)],
+      [this.dimensionX * (4 / 8) - 80, this.dimensionY * (.52)],
+      [this.dimensionX * (4 / 8) + 80, this.dimensionY * (.52)],
+      [this.dimensionX * (6 / 8) + 40, this.dimensionY * (.52)],
     ];
     const shadowVelocities = [
-      [-0.7, 1.3],
-      [-0.7, 1.3],
-      [0.7, 1.3],
-      [0.7, 1.3],
+      [-0.45, 1.4],
+      [-0.18, 1.43],
+      [0.18, 1.43],
+      [0.45, 1.4],
     ]
 
     for (let i = 0; i < 4; i++) {
@@ -135,8 +139,8 @@ class Game {
         img: null,
         pos: shadowPositions[i],
         vel: shadowVelocities[i],
-        width: 60,
-        height: 15,
+        width: 50,
+        height: 10,
         game: this
       }))
     }
@@ -148,15 +152,22 @@ class Game {
     return [].concat(this.metapods, this.boulders, this.berries, this.shadows);
   }
 
+  movingObjects() {
+    return [].concat(this.boulders, this.berries);
+  }
+
   checkCollisions() {
-    const movingObjects = this.allObjects().slice(4);
+    const metapods = this.metapods;
+    const movingObjects = this.movingObjects();
+
     for (let i = 0; i < 4; i++) {
-      let metapod = this.metapods[i];
+      let metapod = metapods[i];
       for (let j = 0; j < movingObjects.length; j++) {
         let movingObj = movingObjects[j];
 
-        if (movingObj.collideWith(metapod)) {
-          return;
+        if (movingObj.isCollidedWith(metapod)) {
+          const collision = movingObj.collideWith(metapod);
+          if (collision) return;
         }
       }
     }
@@ -165,7 +176,15 @@ class Game {
   draw(ctx) {
     ctx.clearRect(0, 0, this.dimensionX, this.dimensionY);
 
-    this.allObjects().forEach((obj) => {
+
+    this.shadows.forEach((shadow) => {
+      shadow.draw(ctx);
+    })
+    for (let i = 0; i < 4; i++) {
+      this.metapods[i].harden();
+      this.metapods[i].draw(ctx);
+    }
+    this.movingObjects().forEach((obj) => {
       obj.draw(ctx);
     })
   }
@@ -200,38 +219,9 @@ class Game {
 
   step(delta) {
     this.moveObjects(delta);
-    // this.checkCollisions();
+    this.checkCollisions();
   }
 
 };
 
 export default Game;
-
-
-// FOR BERRIES AND BOULDERS
-// Game.prototype.addAsteroids = function addAsteroids() {
-//   for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
-//     this.add(new Asteroid({ game: this }));
-//   }
-// };
-
-// Game.prototype.checkCollisions = function checkCollisions() {
-  //   const allObjects = this.allObjects();
-  //   for (let i = 0; i < allObjects.length; i++) {
-    //     for (let j = 0; j < allObjects.length; j++) {
-      //       const obj1 = allObjects[i];
-      //       const obj2 = allObjects[j];
-      
-      //       if (obj1.isCollidedWith(obj2)) {
-        //         const collision = obj1.collideWith(obj2);
-        //         if (collision) return;
-        //       }
-        //     }
-        //   }
-        // };
-        
-// Game.prototype.wrap = function wrap(pos) {
-//   return [
-//     Util.wrap(pos[0], Game.DIM_X), Util.wrap(pos[1], Game.DIM_Y)
-//   ];
-// };
