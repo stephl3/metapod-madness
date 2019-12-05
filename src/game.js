@@ -18,8 +18,15 @@ class Game {
     this.shadows = [];
 
 
-    this.addShadows();
-    this.addBoulders();
+    window.setInterval(() => {
+      this.addBoulders();
+      window.setTimeout(() => {
+        this.addBoulders();
+        window.setTimeout(() => {
+          this.addBoulders();
+        }, 1000)
+      }, 2000);
+    }, 5000);
 
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
@@ -42,11 +49,11 @@ class Game {
     }
   }
 
-  _randomMetapodImg() {
-    const metapodImgs = ['./images/metapod.png', './images/shiny_metapod.png'];
-    const index = Math.round(Math.random());
-    return metapodImgs[index];
-  }
+  // _randomMetapodImg() {
+  //   const metapodImgs = ['./images/metapod.png', './images/shiny_metapod.png'];
+  //   const index = Math.round(Math.random());
+  //   return metapodImgs[index];
+  // }
 
   addMetapods() {
     const metapodPositions = [
@@ -59,7 +66,7 @@ class Game {
     for (let i = 0; i < 4; i++) {
       this.add(new Metapod({
         idx: i,
-        img: this._randomMetapodImg(),
+        img: 'images/metapod/metapod.png',
         startPosX: (metapodPositions[i][0]),
         pos: metapodPositions[i],
         vel: [0.15, 0],
@@ -79,21 +86,20 @@ class Game {
     ];
 
     for (let i = 0; i < 4; i++) {
-      this.add(new Boulder({
-        idx: i,
-        img: 'images/boulder1.png',
-        pos: boulderPositions[i],
-        vel: [0, -12],
-        width: 80,
-        height: 80,
-        game: this
-      }))
+      if (this.metapods[i].HP > 0) {
+        this.add(new Boulder({
+          idx: i,
+          img: 'images/boulder/boulder1.png',
+          pos: boulderPositions[i],
+          vel: [0, -12],
+          width: 80,
+          height: 80,
+          game: this
+        }))
+      }
     }
 
-    window.setTimeout(() => {
-      this.addShadows();
-      this.addBerries();
-    }, 1000);
+    this.addShadows();
   }
 
   addBerries() {
@@ -105,18 +111,20 @@ class Game {
     ];
 
     for (let i = 0; i < 4; i++) {
-      this.add(new Berry({
-        idx: i,
-        img: 'images/gold_razz_berry.png',
-        pos: berryPositions[i],
-        vel: [0, -12],
-        width: 80,
-        height: 80,
-        game: this
-      }))
+      if (this.metapods[i].HP > 0) {
+        this.add(new Berry({
+          idx: i,
+          img: 'images/berry/gold_razz_berry.png',
+          pos: berryPositions[i],
+          vel: [0, -12],
+          width: 80,
+          height: 80,
+          game: this
+        }))
+      }
     }
 
-    // window.setTimeout(() => this.addBoulders(), 1000);
+    this.addShadows();
   }
 
   addShadows() {
@@ -134,15 +142,17 @@ class Game {
     ]
 
     for (let i = 0; i < 4; i++) {
-      this.add(new Shadow({
-        idx: i,
-        img: null,
-        pos: shadowPositions[i],
-        vel: shadowVelocities[i],
-        width: 50,
-        height: 10,
-        game: this
-      }))
+      if (this.metapods[i].HP > 0) {
+        this.add(new Shadow({
+          idx: i,
+          img: null,
+          pos: shadowPositions[i],
+          vel: shadowVelocities[i],
+          width: 50,
+          height: 10,
+          game: this
+        }))
+      }
     }
 
     // window.setTimeout(() => this.addBoulders(), 1000);
@@ -163,11 +173,12 @@ class Game {
     for (let i = 0; i < 4; i++) {
       let metapod = metapods[i];
       for (let j = 0; j < movingObjects.length; j++) {
+        
         let movingObj = movingObjects[j];
 
         if (movingObj.isCollidedWith(metapod)) {
           const collision = movingObj.collideWith(metapod);
-          if (collision) return;
+          if (collision) break;
         }
       }
     }
@@ -176,12 +187,10 @@ class Game {
   draw(ctx) {
     ctx.clearRect(0, 0, this.dimensionX, this.dimensionY);
 
-
     this.shadows.forEach((shadow) => {
       shadow.draw(ctx);
     })
     for (let i = 0; i < 4; i++) {
-      this.metapods[i].harden();
       this.metapods[i].draw(ctx);
     }
     this.movingObjects().forEach((obj) => {
@@ -209,9 +218,11 @@ class Game {
     if (object instanceof Metapod) {
       this.metapods.splice(this.metapods.indexOf(object), 1);
     } else if (object instanceof Boulder) {
-      this.boulders.splice(this.metapods.indexOf(object), 1);
+      this.boulders.splice(this.boulders.indexOf(object), 1);
     } else if (object instanceof Berry) {
       this.berries.splice(this.berries.indexOf(object), 1);
+    } else if (object instanceof Shadow) {
+      this.shadows.splice(this.shadows.indexOf(object), 1);
     } else {
       throw new Error("WOT DIS");
     }

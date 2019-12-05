@@ -4,7 +4,7 @@ body {
   margin: 0;
   width: auto;
   height: 100%;
-  background-image: url('../images/body.gif');
+  background-image: url('../images/background/body.gif');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -19,7 +19,7 @@ body {
 }
 
 #viewport {
-  background-image: url('../images/grassy_background.jpg');
+  background-image: url('../images/background/grassland.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   border: 1px solid black;
@@ -31,5 +31,5 @@ body {
 }
 
 #viewport.menu {
-  background-image: url('../images/menu_background.jpg');
+  background-image: url('../images/background/menu.jpg');
 }

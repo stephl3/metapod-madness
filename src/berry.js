@@ -46,7 +46,9 @@ class Berry extends MovingObject {
         default:
           break;
       }
-    }
+    } else if (this.pos[1] > 500) {
+      this.remove(this);
+    };
     super.move(timeDelta);
   }
 

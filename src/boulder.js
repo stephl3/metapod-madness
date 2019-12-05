@@ -50,20 +50,22 @@ class Boulder extends MovingObject {
         default:
           break;
       }
-    }
+    } else if (this.pos[1] > 700) {
+      this.remove(this);
+    };
     super.move(timeDelta);
   }
 
-  isCollidedWith(otherObject) {
-    super.isCollidedWith(otherObject);
-  }
+  // isCollidedWith(otherObject) {
+  //   super.isCollidedWith(otherObject);
+  // }
 
   collideWith(metapod) {
-    const hardened = this.game.metapodsHardened[metapod.idx];
-    if (hardened) {
+    if (metapod.hardened) {
       this.break();
       return true;
-    } else if (!hardened) {
+    } else if (!metapod.hardened) {
+      console.log("not hardened");
       metapod.smash();
       this.bounce();
       return true;
@@ -72,11 +74,32 @@ class Boulder extends MovingObject {
   }
 
   break() {
-    this.img = '../images/boulder2.png';
-    window.setTimeout(() => {
-      this.img = '../images/boulder3.png';
-    }, 100);
+    this.vel = [0, 6];
+    if (this.img === 'images/boulder/boulder1.png') {
+      window.setTimeout(() => {
+        this.img = 'images/boulder/boulder2.png';
+        window.setTimeout(() => {
+          this.remove(this);
+        }, 300);
+      }, 50);
+    };
   }
+
+  bounce() {
+    this.width += 12;
+    this.height += 12;
+    this.pos[0] -= 6;
+    this.pos[1] += 2;
+    this.vel[1] = 4;
+    window.setTimeout(() => {
+      this.vel[1] = 8;
+      window.setTimeout(() => {
+        this.remove(this);
+      }, 400)
+    }, 200);
+    // console.log("WHAT");
+  }
+
 };
 
 export default Boulder;

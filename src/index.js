@@ -11,5 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   const game = new Game();
 
-  new GameView(game, ctx).start();
+  document.querySelector('button').addEventListener("click", () => {
+    new GameView(game, ctx).start();
+  })
+  
 });

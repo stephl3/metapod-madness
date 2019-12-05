@@ -18,6 +18,9 @@ class Shadow extends MovingObject {
   }
 
   move(timeDelta) {
+    if (this.pos[1] > 600) {
+      this.remove(this);
+    };
     super.move(timeDelta);
   }
 };

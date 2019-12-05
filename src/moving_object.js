@@ -14,9 +14,20 @@ class MovingObject {
   }
 
   draw(ctx) {
+    // this.drawHitBox(ctx);
     const objectImg = new Image();
     objectImg.src = this.img;
     ctx.drawImage(objectImg,
+      this.pos[0], this.pos[1],
+      this.width, this.height
+    );
+  }
+
+  drawHitBox(ctx) {
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(
       this.pos[0], this.pos[1],
       this.width, this.height
     );
@@ -27,8 +38,9 @@ class MovingObject {
     const pos2 = otherObject.pos;
     const centerDist = Math.sqrt(
       Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
-    );
-    return centerDist < (this.width / 2 + otherObject.width / 2);
+    )
+    const distance = (this.width / 2 + otherObject.width / 2);
+    return (centerDist < distance + 5 && centerDist > distance - 5);
   }
 
   move(timeDelta) {
