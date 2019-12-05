@@ -16,42 +16,45 @@ class Metapod extends MovingObject {
       this.hardened = false;
       this.harden = () => null;
       this.vel = [0, 0];
-      this.img = 'images/metapod/faint_metapod.png';
+      this.img.src = 'images/metapod/faint_metapod.png';
     }
   }
 
   harden() {
     if (this.game.metapodsHardened[this.idx]) {
-      this.img = 'images/metapod/harden_metapod.png';
+      this.img.src = 'images/metapod/harden_metapod.png';
       this.vel = [0, 0];
       this.hardened = true;
       this.HP -= 0.2;
     } else {
-      this.img = this.initImg;
+      this.img.src = this.initImg;
       this.vel = this.initVel;
       this.hardened = false;
     }
   }
 
   smash() {
-    if (this.HP > 30) {
-      this.HP -= 30;
-    } else {
-      this.HP = 0;
-    }
-    this.img = 'images/metapod/hurt_metapod2.png';
-    window.setTimeout(() => {
-      this.img = 'images/metapod/hurt_metapod3.png';
-      window.setTimeout(() => {
-        this.img = 'images/metapod/hurt_metapod4.png';
-        window.setTimeout(() => {
-          this.img = 'images/metapod/hurt_metapod2.png';
-          window.setTimeout(() => {
-            this.img = 'images/metapod/metapod.png'
-          }, 400);
-        }, 300);
-      }, 200);
-    }, 100);
+    // debugger;
+    // if (obj.collideWith(this)) {
+      if (this.HP > 30) {
+        this.HP -= 30;
+        this.img.src = 'images/metapod/hurt_metapod3.png';
+      } else {
+        this.HP = 0;
+      }
+    // }
+    // window.setTimeout(() => {
+    //   this.img = 'images/metapod/metapod.png';
+    //   // window.setTimeout(() => {
+    //   //   this.img = 'images/metapod/hurt_metapod4.png';
+    //   //   window.setTimeout(() => {
+    //   //     this.img = 'images/metapod/hurt_metapod2.png';
+    //   //     window.setTimeout(() => {
+    //   //       this.img = 'images/metapod/metapod.png'
+    //   //     }, 400);
+    //   //   }, 300);
+    //   // }, 200);
+    // }, 300);
 
     // if (this.game.metapods[this.idx].isCollidedWith(this.game.boulders[this.idx])) {
     //   if (this.frameCount < 15) {
@@ -113,7 +116,13 @@ class Metapod extends MovingObject {
 
   drawHP(ctx) {
     ctx.beginPath();
-    ctx.fillStyle = "#ffd700";
+    if (this.HP < 30) {
+      ctx.fillStyle = "#ff0000";
+    } else if (this.HP < 100) {
+      ctx.fillStyle = "#ffd700";
+    } else {
+      ctx.fillStyle = "#00ff00";
+    }
     ctx.fillRect(this.startPosX, this.pos[1] + this.height * 1.2, this.HP * (13 / 20), 10); 
   }
 

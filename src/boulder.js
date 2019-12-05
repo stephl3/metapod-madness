@@ -5,11 +5,6 @@ import Metapod from './metapod';
 class Boulder extends MovingObject {
   constructor(options) {
     super(options);
-    // this.shadowPos = [
-    //   this.pos[0] + this.width / 2,
-    //   this.pos[1] + this.height * 1.2
-    // ];
-    // this.shadowSize = [this.width / 2, this.height / 5];
   }
 
   draw(ctx) {
@@ -50,22 +45,20 @@ class Boulder extends MovingObject {
         default:
           break;
       }
-    } else if (this.pos[1] > 700) {
-      this.remove(this);
-    };
+    }
+    //  else if (this.pos[1] > 700) {
+    //   this.remove(this);
+    // };
     super.move(timeDelta);
   }
-
-  // isCollidedWith(otherObject) {
-  //   super.isCollidedWith(otherObject);
-  // }
 
   collideWith(metapod) {
     if (metapod.hardened) {
       this.break();
       return true;
-    } else if (!metapod.hardened) {
+    } else if (!(metapod.hardened)) {
       console.log("not hardened");
+      // debugger;
       metapod.smash();
       this.bounce();
       return true;
@@ -75,14 +68,12 @@ class Boulder extends MovingObject {
 
   break() {
     this.vel = [0, 6];
-    if (this.img === 'images/boulder/boulder1.png') {
+    window.setTimeout(() => {
+      this.img.src = 'images/boulder/boulder2.png';
       window.setTimeout(() => {
-        this.img = 'images/boulder/boulder2.png';
-        window.setTimeout(() => {
-          this.remove(this);
-        }, 300);
-      }, 50);
-    };
+        this.remove(this);
+      }, 300);
+    }, 50);
   }
 
   bounce() {

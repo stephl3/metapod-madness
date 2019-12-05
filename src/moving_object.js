@@ -3,7 +3,8 @@ import Util from './util';
 class MovingObject {
   constructor(options) {
     this.idx = options.idx;
-    this.img = options.img;
+    this.img = new Image();
+    this.img.src = options.img;
     this.pos = options.pos;
     this.vel = options.vel;
     this.width = options.width;
@@ -11,13 +12,12 @@ class MovingObject {
     this.game = options.game;
 
     this.isCollidedWith.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   draw(ctx) {
-    // this.drawHitBox(ctx);
-    const objectImg = new Image();
-    objectImg.src = this.img;
-    ctx.drawImage(objectImg,
+    this.drawHitBox(ctx);
+    ctx.drawImage(this.img,
       this.pos[0], this.pos[1],
       this.width, this.height
     );

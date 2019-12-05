@@ -1,6 +1,6 @@
 
 
-body {
+#background {
   margin: 0;
   width: auto;
   height: 100%;
@@ -11,6 +11,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 #title {
@@ -32,4 +35,23 @@ body {
 
 #viewport.menu {
   background-image: url('../images/background/menu.jpg');
+}
+
+#start-game {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 8px;
+  margin: 20px;
+  background-color: transparent;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+#start-game:hover {
+  background-color: rgba(0, 120, 4, 0.8);
 }

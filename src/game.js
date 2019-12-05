@@ -17,17 +17,6 @@ class Game {
     this.berries = [];
     this.shadows = [];
 
-
-    window.setInterval(() => {
-      this.addBoulders();
-      window.setTimeout(() => {
-        this.addBoulders();
-        window.setTimeout(() => {
-          this.addBoulders();
-        }, 1000)
-      }, 2000);
-    }, 5000);
-
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
     this.addShadows = this.addShadows.bind(this);
@@ -136,8 +125,8 @@ class Game {
     ];
     const shadowVelocities = [
       [-0.45, 1.4],
-      [-0.18, 1.43],
-      [0.18, 1.43],
+      [-0.18, 1.4],
+      [0.18, 1.4],
       [0.45, 1.4],
     ]
 
@@ -145,13 +134,16 @@ class Game {
       if (this.metapods[i].HP > 0) {
         this.add(new Shadow({
           idx: i,
-          img: null,
+          img: 'null',
           pos: shadowPositions[i],
           vel: shadowVelocities[i],
           width: 50,
           height: 10,
           game: this
-        }))
+        }));
+        // window.setTimeout(() => {
+        //   this.remove()
+        // }, 3000);
       }
     }
 
