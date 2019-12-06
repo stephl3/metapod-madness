@@ -59,7 +59,7 @@ class Game {
         img: 'images/metapod/metapod.png',
         startPosX: (metapodPositions[i][0]),
         pos: metapodPositions[i],
-        vel: [0.15, 0],
+        vel: [0.2, 0],
         width: 130,
         height: 130,
         game: this
@@ -69,10 +69,10 @@ class Game {
 
   addBoulders() {
     const boulderPositions = [
-      [this.dimensionX * (15 / 100), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (35 / 100), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (55 / 100), this.dimensionY * (2 / 5)],
-      [this.dimensionX * (75 / 100), this.dimensionY * (2 / 5)],
+      [this.dimensionX * (15 / 100) + 20, this.dimensionY * (2 / 5)],
+      [this.dimensionX * (35 / 100) + 20, this.dimensionY * (2 / 5)],
+      [this.dimensionX * (55 / 100) + 20, this.dimensionY * (2 / 5)],
+      [this.dimensionX * (75 / 100) + 20, this.dimensionY * (2 / 5)],
     ];
 
     for (let i = 0; i < 4; i++) {
@@ -177,6 +177,18 @@ class Game {
     }
   }
 
+  checkGameOver() {
+    let faintedCount = 0;
+    for (let metapod in this.metapods) {
+      if (metapod.fainted) faintedCount += 1;
+    }
+    if (faintedCount === 3) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   draw(ctx) {
     ctx.clearRect(0, 0, this.dimensionX, this.dimensionY);
 
@@ -224,8 +236,8 @@ class Game {
   step(delta) {
     this.moveObjects(delta);
     this.checkCollisions();
+    this.checkGameOver();
   }
-
 };
 
 export default Game;

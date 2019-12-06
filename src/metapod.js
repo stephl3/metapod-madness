@@ -138,10 +138,10 @@ class Metapod extends MovingObject {
   }
 
   move(timeDelta) {
-    if (this.pos[0] > this.startPosX + 5 || this.pos[0] < this.startPosX - 5) {
+    super.move(timeDelta);
+    if (this.pos[0] > this.startPosX + 3 || this.pos[0] < this.startPosX - 3) {
       this.vel[0] *= -1;
     }
-    super.move(timeDelta);
   }
   
 };

@@ -25,7 +25,7 @@ class Boulder extends MovingObject {
   }
 
   move(timeDelta) {
-    if (this.pos[1] < -600) {
+    if (this.pos[1] < -500) {
       this.width *= 1.5;
       this.height *= 1.5;
       this.vel = [0, 16];
@@ -57,17 +57,16 @@ class Boulder extends MovingObject {
       this.break();
       return true;
     } else if (!(metapod.hardened)) {
-      console.log("not hardened");
-      metapod.smash();
       this.bounce();
+      metapod.smash();
       return true;
     }
     return false;
   }
 
   break() {
-    this.vel = [0, 6];
     window.setTimeout(() => {
+      this.vel[1] = 8;
       this.img.src = 'images/boulder/boulder2.png';
       window.setTimeout(() => {
         this.remove(this);
@@ -76,20 +75,20 @@ class Boulder extends MovingObject {
   }
 
   bounce() {
-    this.width += 12;
-    this.height += 12;
-    this.pos[0] -= 6;
-    this.pos[1] += 2;
-    this.vel[1] = 4;
     window.setTimeout(() => {
-      this.vel[1] = 8;
+      this.width += 8;
+      this.height += 8;
+      this.pos[0] -= 4;
+      this.pos[1] += 2;
+      this.vel[1] = 4;
       window.setTimeout(() => {
-        this.remove(this);
-      }, 400)
-    }, 200);
-    // console.log("WHAT");
+        this.vel[1] = 8;
+        window.setTimeout(() => {
+          this.remove(this);
+        }, 300);
+      }, 100);
+    }, 50);
   }
-
 };
 
 export default Boulder;
