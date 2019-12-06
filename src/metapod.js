@@ -9,6 +9,8 @@ class Metapod extends MovingObject {
     this.initImg = options.img;
     this.initVel = options.vel;
     this.hardened = false;
+    this.smashed = false;
+    this.fainted = false;
   }
 
   faint() {
@@ -16,6 +18,25 @@ class Metapod extends MovingObject {
       this.hardened = false;
       this.harden = () => null;
       this.vel = [0, 0];
+
+      window.setTimeout(() => {
+        this.img.src = 'images/null.png';
+        window.setTimeout(() => {
+          this.img.src = 'images/metapod/metapod.png';
+          window.setTimeout(() => {
+            this.img.src = 'images/null.png';
+            window.setTimeout(() => {
+              this.img.src = 'images/metapod/metapod.png';
+              window.setTimeout(() => {
+                this.fainted = true;
+                this.img.src = 'images/metapod/faint_metapod.png';
+              }, 500);
+            }, 400);
+          }, 250);
+        }, 150);
+      }, 0);
+    }
+    if (this.fainted) {
       this.img.src = 'images/metapod/faint_metapod.png';
     }
   }
@@ -23,64 +44,55 @@ class Metapod extends MovingObject {
   harden() {
     if (this.game.metapodsHardened[this.idx]) {
       this.img.src = 'images/metapod/harden_metapod.png';
-      this.vel = [0, 0];
       this.hardened = true;
+      this.vel = [0, 0];
       this.HP -= 0.2;
+    } else if (this.smashed) {
+      return;
     } else {
       this.img.src = this.initImg;
-      this.vel = this.initVel;
       this.hardened = false;
+      this.vel = this.initVel;
     }
   }
 
   smash() {
     // debugger;
-    // if (obj.collideWith(this)) {
-      if (this.HP > 30) {
-        this.HP -= 30;
-        this.img.src = 'images/metapod/hurt_metapod3.png';
-      } else {
-        this.HP = 0;
-      }
-    // }
-    // window.setTimeout(() => {
-    //   this.img = 'images/metapod/metapod.png';
-    //   // window.setTimeout(() => {
-    //   //   this.img = 'images/metapod/hurt_metapod4.png';
-    //   //   window.setTimeout(() => {
-    //   //     this.img = 'images/metapod/hurt_metapod2.png';
-    //   //     window.setTimeout(() => {
-    //   //       this.img = 'images/metapod/metapod.png'
-    //   //     }, 400);
-    //   //   }, 300);
-    //   // }, 200);
-    // }, 300);
+    this.smashed = true;
+    window.setTimeout(() => {
+      this.smashed = false;
+    }, 450);
 
-    // if (this.game.metapods[this.idx].isCollidedWith(this.game.boulders[this.idx])) {
-    //   if (this.frameCount < 15) {
-    //     this.img = 'images/metapod/hurt_metapod1.png';
-    //   } else if (this.frameCount < 20) {
-    //     this.img = 'images/metapod/hurt_metapod2.png';
-    //   } else if (this.frameCount < 25) {
-    //     this.img = 'images/metapod/hurt_metapod3.png';
-    //   } else if (this.frameCount < 30) {
-    //     this.img = 'images/metapod/hurt_metapod4.png';
-    //   } else if (this.frameCount < 35) {
-    //     this.img = 'images/metapod/hurt_metapod4.png';
-    //   } else if (this.frameCount < 45) {
-    //     this.img = 'images/metapod/hurt_metapod3.png';
-    //   } else if (this.frameCount < 50) {
-    //     this.img = 'images/metapod/hurt_metapod2.png';
-    //   } else if (this.frameCount < 55) {
-    //     this.img = 'images/metapod/hurt_metapod1.png';
-    //   } else {
-    //     this.img = 'images/metapod/metapod.png';
-    //   }
-    // } else {
-    //   this.img = 'images/metapod/metapod.png';
-    //   this.frameCount = 0;
-    // }
-    // this.frameCount += 1;
+    if (this.HP > 30) {
+      this.HP -= 30;
+    } else {
+      this.HP = 0;
+    }
+
+    window.setTimeout(() => {
+      this.img.src = 'images/metapod/hurt_metapod2.png';
+      window.setTimeout(() => {
+        this.img.src = 'images/metapod/hurt_metapod4.png';
+        window.setTimeout(() => {
+          this.img.src = 'images/metapod/hurt_metapod2.png';
+          window.setTimeout(() => {
+            this.img.src = 'images/metapod/metapod.png'
+            window.setTimeout(() => {
+              this.img.src = 'images/metapod/hurt_metapod2.png'
+              window.setTimeout(() => {
+                this.img.src = 'images/metapod/hurt_metapod4.png'
+                window.setTimeout(() => {
+                  this.img.src = 'images/metapod/hurt_metapod2.png'
+                  window.setTimeout(() => {
+                    this.img.src = 'images/metapod/metapod.png'
+                  }, 440);
+                }, 400);
+              }, 320);
+            }, 280);
+          }, 200);
+        }, 160);
+      }, 80);
+    }, 40);
   }
 
   draw(ctx) {
@@ -90,7 +102,6 @@ class Metapod extends MovingObject {
     this.drawHPBar(ctx);
     this.drawHP(ctx);
     super.draw(ctx);
-    // what happens when boulder or berry collides with?
   }
 
   drawShadow(ctx) {
@@ -127,7 +138,7 @@ class Metapod extends MovingObject {
   }
 
   move(timeDelta) {
-    if (this.pos[0] > this.startPosX + 1.5 || this.pos[0] < this.startPosX - 1.5) {
+    if (this.pos[0] > this.startPosX + 5 || this.pos[0] < this.startPosX - 5) {
       this.vel[0] *= -1;
     }
     super.move(timeDelta);

@@ -3,7 +3,6 @@ class GameView {
     this.game = game;
     this.ctx = ctx;
     this.keys = [192, 67, 77, 8];
-    this.metapods = this.game.addMetapods();
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.start = this.start.bind(this);
@@ -38,6 +37,7 @@ class GameView {
   }
 
   start() {
+    this.game.addMetapods();
     this.bindKeyHandlers();
     this.lastTime = 0;
     // start animation

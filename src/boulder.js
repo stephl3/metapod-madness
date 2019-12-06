@@ -58,7 +58,6 @@ class Boulder extends MovingObject {
       return true;
     } else if (!(metapod.hardened)) {
       console.log("not hardened");
-      // debugger;
       metapod.smash();
       this.bounce();
       return true;
