@@ -33,8 +33,44 @@
   height: 600px;
 }
 
-#viewport.menu {
+/* #viewport.menu {
   background-image: url('../images/background/menu.jpg');
+} */
+
+#menu {
+  width: 800px;
+  height: 200px;
+}
+
+.menu-options {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.keys {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.key {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 8px;
+  margin: 20px;
+  background-color: silver;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+  box-sizing: border-box;
+  border-radius: 16px;
 }
 
 #start-game {
