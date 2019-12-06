@@ -59,9 +59,11 @@
 }
 
 .key {
+  width: 50px;
+  text-align: center;
   cursor: pointer;
   outline: none;
-  border: none;
+  border: 1px solid black;
   padding: 8px;
   margin: 20px;
   background-color: silver;
@@ -70,7 +72,7 @@
   font-size: 20px;
   font-weight: bolder;
   box-sizing: border-box;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 #start-game {
