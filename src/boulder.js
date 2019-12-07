@@ -5,6 +5,10 @@ import Metapod from './metapod';
 class Boulder extends MovingObject {
   constructor(options) {
     super(options);
+    this.launchFX = new Audio('assets/sounds/launch.wav');
+    this.breakFX = new Audio('assets/sounds/harden.wav');
+    this.smashFX = new Audio('assets/sounds/damage.wav');
+    this.launchFX.play();
   }
 
   draw(ctx) {
@@ -65,9 +69,10 @@ class Boulder extends MovingObject {
   }
 
   break() {
+    this.img.src = 'assets/images/boulder/boulder2.png';
     window.setTimeout(() => {
       this.vel[1] = 8;
-      this.img.src = 'images/boulder/boulder2.png';
+      this.breakFX.play();
       window.setTimeout(() => {
         this.remove(this);
       }, 300);
@@ -75,6 +80,7 @@ class Boulder extends MovingObject {
   }
 
   bounce() {
+    this.smashFX.play();
     window.setTimeout(() => {
       this.width += 8;
       this.height += 8;

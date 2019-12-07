@@ -8,6 +8,7 @@ class Metapod extends MovingObject {
     this.HP = 200;
     this.initImg = options.img;
     this.initVel = options.vel;
+    this.faintFX = new Audio('assets/sounds/faint.wav');
     this.hardened = false;
     this.smashed = false;
     this.fainted = false;
@@ -20,16 +21,16 @@ class Metapod extends MovingObject {
       this.vel = [0, 0];
 
       window.setTimeout(() => {
-        this.img.src = 'images/null.png';
+        this.img.src = 'assets/images/null.png';
         window.setTimeout(() => {
-          this.img.src = 'images/metapod/metapod.png';
+          this.img.src = 'assets/images/metapod/metapod.png';
           window.setTimeout(() => {
-            this.img.src = 'images/null.png';
+            this.img.src = 'assets/images/null.png';
             window.setTimeout(() => {
-              this.img.src = 'images/metapod/metapod.png';
+              this.img.src = 'assets/images/metapod/metapod.png';
               window.setTimeout(() => {
                 this.fainted = true;
-                this.img.src = 'images/metapod/faint_metapod.png';
+                this.img.src = 'assets/images/metapod/faint_metapod.png';
               }, 500);
             }, 400);
           }, 250);
@@ -37,13 +38,13 @@ class Metapod extends MovingObject {
       }, 0);
     }
     if (this.fainted) {
-      this.img.src = 'images/metapod/faint_metapod.png';
+      this.img.src = 'assets/images/metapod/faint_metapod.png';
     }
   }
 
   harden() {
     if (this.game.metapodsHardened[this.idx]) {
-      this.img.src = 'images/metapod/harden_metapod.png';
+      this.img.src = 'assets/images/metapod/harden_metapod.png';
       this.hardened = true;
       this.vel = [0, 0];
       this.HP -= 0.2;
@@ -70,21 +71,21 @@ class Metapod extends MovingObject {
     }
 
     window.setTimeout(() => {
-      this.img.src = 'images/metapod/hurt_metapod2.png';
+      this.img.src = 'assets/images/metapod/hurt_metapod2.png';
       window.setTimeout(() => {
-        this.img.src = 'images/metapod/hurt_metapod4.png';
+        this.img.src = 'assets/images/metapod/hurt_metapod4.png';
         window.setTimeout(() => {
-          this.img.src = 'images/metapod/hurt_metapod2.png';
+          this.img.src = 'assets/images/metapod/hurt_metapod2.png';
           window.setTimeout(() => {
-            this.img.src = 'images/metapod/metapod.png'
+            this.img.src = 'assets/images/metapod/metapod.png'
             window.setTimeout(() => {
-              this.img.src = 'images/metapod/hurt_metapod2.png'
+              this.img.src = 'assets/images/metapod/hurt_metapod2.png'
               window.setTimeout(() => {
-                this.img.src = 'images/metapod/hurt_metapod4.png'
+                this.img.src = 'assets/images/metapod/hurt_metapod4.png'
                 window.setTimeout(() => {
-                  this.img.src = 'images/metapod/hurt_metapod2.png'
+                  this.img.src = 'assets/images/metapod/hurt_metapod2.png'
                   window.setTimeout(() => {
-                    this.img.src = 'images/metapod/metapod.png'
+                    this.img.src = 'assets/images/metapod/metapod.png'
                   }, 440);
                 }, 400);
               }, 320);

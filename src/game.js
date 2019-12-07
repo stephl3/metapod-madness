@@ -40,7 +40,7 @@ class Game {
   }
 
   // _randomMetapodImg() {
-  //   const metapodImgs = ['./images/metapod.png', './images/shiny_metapod.png'];
+  //   const metapodImgs = ['./assets/images/metapod.png', './assets/images/shiny_metapod.png'];
   //   const index = Math.round(Math.random());
   //   return metapodImgs[index];
   // }
@@ -56,7 +56,7 @@ class Game {
     for (let i = 0; i < 4; i++) {
       this.add(new Metapod({
         idx: i,
-        img: 'images/metapod/metapod.png',
+        img: 'assets/images/metapod/metapod.png',
         startPosX: (metapodPositions[i][0]),
         pos: metapodPositions[i],
         vel: [0.2, 0],
@@ -79,7 +79,7 @@ class Game {
       if (this.metapods[i].HP > 0) {
         this.add(new Boulder({
           idx: i,
-          img: 'images/boulder/boulder1.png',
+          img: 'assets/images/boulder/boulder1.png',
           pos: boulderPositions[i],
           vel: [0, -12],
           width: 80,
@@ -104,7 +104,7 @@ class Game {
       if (this.metapods[i].HP > 0) {
         this.add(new Berry({
           idx: i,
-          img: 'images/berry/gold_razz_berry.png',
+          img: 'assets/images/berry/gold_razz_berry.png',
           pos: berryPositions[i],
           vel: [0, -12],
           width: 80,
@@ -135,7 +135,7 @@ class Game {
       if (this.metapods[i].HP > 0) {
         this.add(new Shadow({
           idx: i,
-          img: 'images/boulder/shadow.png',
+          img: 'assets/images/boulder/shadow.png',
           pos: shadowPositions[i],
           vel: shadowVelocities[i],
           width: 100,

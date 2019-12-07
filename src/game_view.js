@@ -33,23 +33,23 @@ class GameView {
   };
 
   load() {
-    this.game.addMetapods();
   }
-
+  
   start() {
+    this.game.addMetapods();
     this.bindKeyHandlers();
     this.lastTime = 0;
     // start animation
     requestAnimationFrame(this.animate);
-
+    
     window.setInterval(() => {
       this.game.addBoulders();
       window.setTimeout(() => {
         this.game.addBoulders();
         window.setTimeout(() => {
           this.game.addBoulders();
-        }, 1000)
-      }, 2000);
+        }, 2000)
+      }, 1000);
     }, 5000);
   }
 
