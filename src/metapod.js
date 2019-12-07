@@ -16,12 +16,13 @@ class Metapod extends MovingObject {
 
   faint() {
     if (this.HP < 1) {
+      this.vel = [0, 0];
       this.hardened = false;
       this.harden = () => null;
-      this.vel = [0, 0];
-
+      
       window.setTimeout(() => {
         this.img.src = 'assets/images/null.png';
+        this.faintFX.play();
         window.setTimeout(() => {
           this.img.src = 'assets/images/metapod/metapod.png';
           window.setTimeout(() => {
@@ -30,6 +31,7 @@ class Metapod extends MovingObject {
               this.img.src = 'assets/images/metapod/metapod.png';
               window.setTimeout(() => {
                 this.fainted = true;
+                this.faint = () => null;
                 this.img.src = 'assets/images/metapod/faint_metapod.png';
               }, 500);
             }, 400);
