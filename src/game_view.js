@@ -3,6 +3,10 @@ class GameView {
     this.game = game;
     this.ctx = ctx;
     this.keys = [192, 67, 77, 8];
+    this.muteMusic = false;
+    this.setSounds();
+
+    this.game.addMetapods();
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.start = this.start.bind(this);
@@ -32,25 +36,36 @@ class GameView {
     document.addEventListener("keyup", keyUpHandler, false)
   };
 
-  load() {
+  setSounds() {
+    this.audioCtx = new AudioContext();
+    this.menuMusic = new Audio('assets/sounds/menu_music.mp3');
+    this.menuMusic.loop = true;
+    this.menuMusic.play();
+    this.gameMusic = new Audio('assets/sounds/game_music.mp3');
+    // this.gameOverSound = new Audio('./assets/sounds/sad.wav');
+  }
+
+  playMusic() {
+    this.audioCtx.resume();
   }
   
   start() {
-    this.game.addMetapods();
+    this.menuMusic.pause();
+    this.gameMusic.play();
     this.bindKeyHandlers();
     this.lastTime = 0;
-    // start animation
-    requestAnimationFrame(this.animate);
     
-    window.setInterval(() => {
+    setInterval(() => {
       this.game.addBoulders();
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.game.addBoulders();
-        window.setTimeout(() => {
+        setTimeout(() => {
           this.game.addBoulders();
         }, 2000)
       }, 1000);
     }, 5000);
+    // start animation
+    requestAnimationFrame(this.animate);
   }
 
   animate(time) {

@@ -16,23 +16,25 @@ class Metapod extends MovingObject {
 
   faint() {
     if (this.HP < 1) {
+      this.faintFX.play();
+      // this.faintFX = new Audio();
+
       this.vel = [0, 0];
       this.hardened = false;
       this.harden = () => null;
       
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.img.src = 'assets/images/null.png';
-        this.faintFX.play();
-        window.setTimeout(() => {
+        setTimeout(() => {
           this.img.src = 'assets/images/metapod/metapod.png';
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.img.src = 'assets/images/null.png';
-            window.setTimeout(() => {
+            setTimeout(() => {
               this.img.src = 'assets/images/metapod/metapod.png';
-              window.setTimeout(() => {
+              setTimeout(() => {
+                this.img.src = 'assets/images/metapod/faint_metapod.png';
                 this.fainted = true;
                 this.faint = () => null;
-                this.img.src = 'assets/images/metapod/faint_metapod.png';
               }, 500);
             }, 400);
           }, 250);
@@ -62,7 +64,7 @@ class Metapod extends MovingObject {
   smash() {
     // debugger;
     this.smashed = true;
-    window.setTimeout(() => {
+    setTimeout(() => {
       this.smashed = false;
     }, 450);
 
@@ -72,21 +74,21 @@ class Metapod extends MovingObject {
       this.HP = 0;
     }
 
-    window.setTimeout(() => {
+    setTimeout(() => {
       this.img.src = 'assets/images/metapod/hurt_metapod2.png';
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.img.src = 'assets/images/metapod/hurt_metapod4.png';
-        window.setTimeout(() => {
+        setTimeout(() => {
           this.img.src = 'assets/images/metapod/hurt_metapod2.png';
-          window.setTimeout(() => {
+          setTimeout(() => {
             this.img.src = 'assets/images/metapod/metapod.png'
-            window.setTimeout(() => {
+            setTimeout(() => {
               this.img.src = 'assets/images/metapod/hurt_metapod2.png'
-              window.setTimeout(() => {
+              setTimeout(() => {
                 this.img.src = 'assets/images/metapod/hurt_metapod4.png'
-                window.setTimeout(() => {
+                setTimeout(() => {
                   this.img.src = 'assets/images/metapod/hurt_metapod2.png'
-                  window.setTimeout(() => {
+                  setTimeout(() => {
                     this.img.src = 'assets/images/metapod/metapod.png'
                   }, 440);
                 }, 400);

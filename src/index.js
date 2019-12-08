@@ -4,15 +4,16 @@ import GameView from './game_view.js';
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("viewport");
-  canvas.width = 800;
-  canvas.height = 600;
+  const canvas = document.getElementById("game");
 
   const ctx = canvas.getContext("2d");
   const game = new Game();
   const gameView = new GameView(game, ctx);
+  const menu = document.getElementById("menu");
 
-  document.querySelector('button').addEventListener("click", () => {
+  gameView.playMusic();
+  menu.addEventListener("click", () => {
+    menu.classList.remove("uber");
     gameView.start();
   })
 });

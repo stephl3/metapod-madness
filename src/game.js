@@ -17,7 +17,6 @@ class Game {
     this.berries = [];
     this.shadows = [];
 
-    // this.addMetapods();
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
     this.addShadows = this.addShadows.bind(this);

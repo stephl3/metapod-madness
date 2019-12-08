@@ -12,9 +12,20 @@
   </head>
   <body>
     <div id="background">
-      <img src="./assets/images/title.png" id="title">
-      <canvas id="viewport"></canvas>
-      <section id="menu">
+      <div id="canvas-container">
+        <div id="menu" class="uber">
+          <img src="./assets/images/title.png" id="title">
+          <div class="blinking">
+            Metapod Madness
+            <br>
+            Click screen or press space to start game!
+            <br>
+            (instructions below)
+          </div>
+        </div>
+        <canvas id="game" class="loading"></canvas>
+      </div>
+      <section id="menud">
         <div class="menu-options">
           <div class="keys">
             <div class="key">`</div>

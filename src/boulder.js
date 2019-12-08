@@ -70,10 +70,10 @@ class Boulder extends MovingObject {
 
   break() {
     this.img.src = 'assets/images/boulder/boulder2.png';
-    window.setTimeout(() => {
+    setTimeout(() => {
       this.vel[1] = 8;
       this.breakFX.play();
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.remove(this);
       }, 300);
     }, 50);
@@ -81,15 +81,15 @@ class Boulder extends MovingObject {
 
   bounce() {
     this.smashFX.play();
-    window.setTimeout(() => {
+    setTimeout(() => {
       this.width += 8;
       this.height += 8;
       this.pos[0] -= 4;
       this.pos[1] += 2;
       this.vel[1] = 4;
-      window.setTimeout(() => {
+      setTimeout(() => {
         this.vel[1] = 8;
-        window.setTimeout(() => {
+        setTimeout(() => {
           this.remove(this);
         }, 300);
       }, 100);

@@ -1,8 +1,7 @@
 
-
 #background {
   margin: 0;
-  width: auto;
+  width: 100%;
   height: 100%;
   background-image: url('../images/background/body.gif');
   background-repeat: no-repeat;
@@ -12,19 +11,22 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 100%;
-  height: 100%;
 }
 
 #title {
-  margin: 15px;
-  height: 75px;
+  height: 50px;
 }
 
-#viewport {
+#canvas-container {
+  width: 800px;
+  height: 600px;
   background-image: url('../images/background/grassland.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#game {
+  position: relative;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 12px;
@@ -33,13 +35,33 @@
   height: 600px;
 }
 
-/* #viewport.menu {
+.uber {
+  position: absolute;
   background-image: url('../images/background/menu.jpg');
-} */
-
-#menu {
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* border: 1px solid black; */
+  box-sizing: border-box;
+  border-radius: 12px;
+  /* box-shadow: 4px 4px rgba(41, 41, 41, 0.6); */
   width: 800px;
-  height: 200px;
+  height: 600px;
+}
+
+.blinking {
+  font-family: Marker Felt, fantasy;
+  color: white;
+}
+
+#menud {
+  margin-top: 40px;
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 4px 4px rgba(41, 41, 41, 0.6);
+  width: 800px;
+  height: 120px;
 }
 
 .menu-options {
@@ -65,7 +87,7 @@
   outline: none;
   border: 1px solid black;
   padding: 8px;
-  margin: 20px;
+  margin: 10px;
   background-color: silver;
   color: black;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -80,7 +102,7 @@
   outline: none;
   border: none;
   padding: 8px;
-  margin: 20px;
+  margin: 10px;
   background-color: transparent;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
