@@ -41,8 +41,8 @@ const Menu = {
     };
 
     const backToMenu = () => {
-      game.gameOver = true;
-      game.gamePlaying = false;
+      game.over = true;
+      // game.gamePlaying = false;
       game.backgroundMusic.pause();
       game.backgroundMusic.currentTime = 0;
       playSelectSound();

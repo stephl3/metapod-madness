@@ -8,6 +8,8 @@
     <link rel="shortcut icon" type="image/png" href="./assets/images/metapod/metapod.png" />
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="application/javascript" src="main.js"></script>
   </head>
   <body>
@@ -24,13 +26,23 @@
           </div>
         </div>
         <canvas id="game" class="loading"></canvas>
+        <div id="victory">
+          <div class="victory-options">
+            <div id="restart" class="option">Restart</div>
+            <div id="quit" class="option">Quit</div>
+          </div>
+        </div>
+
+          <i class="fas fa-volume-mute"></i>
+          <i class="fas fa-volume-up"></i>
+        <!-- <i class="fas fa-pause" id="pause-button"></i> -->
       </div>
       <section id="menud">
         <div class="menu-options">
           <div class="keys">
             <div class="key">`</div>
-            <div class="key">c</div>
-            <div class="key">m</div>
+            <div class="key">4</div>
+            <div class="key">8</div>
             <div class="key">del</div>
           </div>
           <button id="start-game">BEGIN MADNESS</button>

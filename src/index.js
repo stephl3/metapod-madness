@@ -5,6 +5,8 @@ import GameView from './game_view.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("game");
+  canvas.width = 800;
+  canvas.height = 600;
 
   const ctx = canvas.getContext("2d");
   const game = new Game();
@@ -12,8 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menu");
 
   gameView.playMusic();
-  menu.addEventListener("click", () => {
-    menu.classList.remove("uber");
+  document.querySelector('button').addEventListener("click", () => {
+    menu.style.display = "none";
     gameView.start();
   })
+  menu.addEventListener("click", () => {
+    menu.style.display = "none";
+    gameView.start();
+  })
+
+  document.body.onkeyup = function(e) {
+    e.preventDefault();
+    if (e.keyCode === 32) {
+      menu.style.display = "none";
+      gameView.start();
+      gameView.pause();
+    }
+  }
 });

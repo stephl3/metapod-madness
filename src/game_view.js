@@ -2,11 +2,13 @@ class GameView {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
-    this.keys = [192, 67, 77, 8];
+    this.paused = true;
+    this.gameOver = true;
+    this.keys = [192, 52, 56, 8];
     this.muteMusic = false;
     this.setSounds();
 
-    this.game.addMetapods();
+    this.metapods = this.game.addMetapods();
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.start = this.start.bind(this);
@@ -43,6 +45,7 @@ class GameView {
     this.menuMusic.play();
     this.gameMusic = new Audio('assets/sounds/game_music.mp3');
     // this.gameOverSound = new Audio('./assets/sounds/sad.wav');
+    this.victoryMusic = new Audio('assets/sounds/victory_music.mp3');
   }
 
   playMusic() {
@@ -50,11 +53,17 @@ class GameView {
   }
   
   start() {
+    this.paused = false;
+    this.gameOver = false;
+    this.game.over = false;
     this.menuMusic.pause();
     this.gameMusic.play();
     this.bindKeyHandlers();
     this.lastTime = 0;
     
+    setTimeout(() => {
+      this.game.addBoulders();
+    }, 3000);
     setInterval(() => {
       this.game.addBoulders();
       setTimeout(() => {
@@ -68,15 +77,39 @@ class GameView {
     requestAnimationFrame(this.animate);
   }
 
+  pause() {
+    this.paused = !this.paused;
+    if (this.gameMusic.volume > 0.3) {
+      this.gameMusic.volume = 0.3;
+    } else {
+      this.gameMusic.volume = 1.0;
+    }
+  }
+
+  end() {
+    const victoryMenu = document.getElementById("victory");
+    victoryMenu.style.display = "initial";
+    this.gameMusic.pause();
+    this.victoryMusic.play();
+  }
+
   animate(time) {
     const timeDelta = time - this.lastTime;
 
     this.game.step(timeDelta);
     this.game.draw(this.ctx);
     this.lastTime = time;
-
+    this.gameOver = this.game.over;
     // every call to animate requests causes another call to animate
-    requestAnimationFrame(this.animate);
+    if (!this.paused) {
+      requestAnimationFrame(this.animate);
+      if (this.gameOver) {
+        setTimeout(() => {
+          this.end();
+          this.animate = () => null;
+        }, 3000);
+      }
+    }
   }
 };
 

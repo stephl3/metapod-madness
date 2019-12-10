@@ -9,7 +9,7 @@ class Game {
   constructor() {
     this.dimensionX = 800;
     this.dimensionY = 600;
-    this.fps = 32;
+    this.over = false;
 
     this.metapods = [];
     this.metapodsHardened = [false, false, false, false];
@@ -17,6 +17,7 @@ class Game {
     this.berries = [];
     this.shadows = [];
 
+    this.addMetapods = this.addMetapods.bind(this);
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
     this.addShadows = this.addShadows.bind(this);
@@ -58,7 +59,7 @@ class Game {
         img: 'assets/images/metapod/metapod.png',
         startPosX: (metapodPositions[i][0]),
         pos: metapodPositions[i],
-        vel: [0.2, 0],
+        vel: [0.1, 0],
         width: 130,
         height: 130,
         game: this
@@ -75,7 +76,7 @@ class Game {
     ];
 
     for (let i = 0; i < 4; i++) {
-      if (this.metapods[i].HP > 0) {
+      if (this.metapods[i].HP > 1 && !(this.over)) {
         this.add(new Boulder({
           idx: i,
           img: 'assets/images/boulder/boulder1.png',
@@ -84,9 +85,9 @@ class Game {
           width: 80,
           height: 80,
           game: this
-        }))
-      }
-    }
+        }));
+      };
+    };
 
     this.addShadows();
   }
@@ -100,7 +101,7 @@ class Game {
     ];
 
     for (let i = 0; i < 4; i++) {
-      if (this.metapods[i].HP > 0) {
+      if (this.metapods[i].HP > 1 && !(this.over)) {
         this.add(new Berry({
           idx: i,
           img: 'assets/images/berry/gold_razz_berry.png',
@@ -109,9 +110,9 @@ class Game {
           width: 80,
           height: 80,
           game: this
-        }))
-      }
-    }
+        }));
+      };
+    };
 
     this.addShadows();
   }
@@ -128,10 +129,10 @@ class Game {
       [-0.28, 1.3],
       [0.12, 1.3],
       [0.48, 1.3],
-    ]
+    ];
 
     for (let i = 0; i < 4; i++) {
-      if (this.metapods[i].HP > 0) {
+      if (this.metapods[i].HP > 1 && !(this.over)) {
         this.add(new Shadow({
           idx: i,
           img: 'assets/images/boulder/shadow.png',
@@ -141,11 +142,8 @@ class Game {
           height: 50,
           game: this
         }));
-        // window.setTimeout(() => {
-        //   this.remove()
-        // }, 3000);
-      }
-    }
+      };
+    };
 
     // window.setTimeout(() => this.addBoulders(), 1000);
   }
@@ -177,11 +175,9 @@ class Game {
   }
 
   checkGameOver() {
-    let faintedCount = 0;
-    for (let metapod in this.metapods) {
-      if (metapod.fainted) faintedCount += 1;
-    }
-    if (faintedCount === 3) {
+    const faintedMetapods = this.metapods.filter(metapod => metapod.fainted)
+  
+    if (faintedMetapods.length === 3) {
       return true;
     } else {
       return false;
@@ -235,7 +231,7 @@ class Game {
   step(delta) {
     this.moveObjects(delta);
     this.checkCollisions();
-    this.checkGameOver();
+    if (this.checkGameOver()) this.over = true;
   }
 };
 

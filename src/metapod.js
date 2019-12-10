@@ -15,13 +15,12 @@ class Metapod extends MovingObject {
   }
 
   faint() {
-    if (this.HP < 1) {
-      this.faintFX.play();
-      // this.faintFX = new Audio();
-
+    if (this.HP < 1) {      
       this.vel = [0, 0];
-      this.hardened = false;
+      this.hardened = true;
       this.harden = () => null;
+      this.fainted = true;
+      this.faintFX.play();
       
       setTimeout(() => {
         this.img.src = 'assets/images/null.png';
@@ -33,7 +32,6 @@ class Metapod extends MovingObject {
               this.img.src = 'assets/images/metapod/metapod.png';
               setTimeout(() => {
                 this.img.src = 'assets/images/metapod/faint_metapod.png';
-                this.fainted = true;
                 this.faint = () => null;
               }, 500);
             }, 400);
@@ -41,23 +39,23 @@ class Metapod extends MovingObject {
         }, 150);
       }, 0);
     }
-    if (this.fainted) {
-      this.img.src = 'assets/images/metapod/faint_metapod.png';
-    }
   }
 
   harden() {
     if (this.game.metapodsHardened[this.idx]) {
       this.img.src = 'assets/images/metapod/harden_metapod.png';
       this.hardened = true;
-      this.vel = [0, 0];
-      this.HP -= 0.2;
+      // this.vel = [0, 0];
+      this.HP -= 2;
+      if (this.HP < 1) {
+        this.faint();
+      }
     } else if (this.smashed) {
       return;
     } else {
       this.img.src = this.initImg;
       this.hardened = false;
-      this.vel = this.initVel;
+      // this.vel = this.initVel;
     }
   }
 
@@ -66,7 +64,7 @@ class Metapod extends MovingObject {
     this.smashed = true;
     setTimeout(() => {
       this.smashed = false;
-    }, 450);
+    }, 350);
 
     if (this.HP > 30) {
       this.HP -= 30;
@@ -90,14 +88,14 @@ class Metapod extends MovingObject {
                   this.img.src = 'assets/images/metapod/hurt_metapod2.png'
                   setTimeout(() => {
                     this.img.src = 'assets/images/metapod/metapod.png'
-                  }, 440);
-                }, 400);
-              }, 320);
-            }, 280);
-          }, 200);
-        }, 160);
-      }, 80);
-    }, 40);
+                  }, 330);
+                }, 300);
+              }, 240);
+            }, 210);
+          }, 150);
+        }, 120);
+      }, 60);
+    }, 30);
   }
 
   draw(ctx) {
@@ -143,10 +141,12 @@ class Metapod extends MovingObject {
   }
 
   move(timeDelta) {
+    if (this.pos[0] > this.startPosX + 2) {
+      this.vel = [-0.1, 0];
+    } else if (this.pos[0] < this.startPosX - 2) {
+      this.vel = [0.1, 0];
+    };
     super.move(timeDelta);
-    if (this.pos[0] > this.startPosX + 3 || this.pos[0] < this.startPosX - 3) {
-      this.vel[0] *= -1;
-    }
   }
   
 };
