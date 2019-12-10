@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const gameView = new GameView(game, ctx);
   const menu = document.getElementById("menu");
 
-  gameView.playMusic();
+  // gameView.playMusic();
   document.querySelector('button').addEventListener("click", () => {
     menu.style.display = "none";
     gameView.start();

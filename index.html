@@ -17,12 +17,25 @@
       <div id="canvas-container">
         <div id="menu" class="uber">
           <img src="./assets/images/title.png" id="title">
-          <div class="blinking">
-            Metapod Madness
-            <br>
-            Click screen or press space to start game!
-            <br>
-            (instructions below)
+          <div id="options" class="modal-background">
+            <div id="start" class="option">Start</div>
+            <div id="how-to" class="option">How to Play</div>
+            <div id="key-bindings" class="option">Key Bindings</div>
+            <div id="instructions" class="modal-child">
+              <i className="fas fa-times" id="close-icon"></i>
+              <div class="instruct">
+                Press the appropriate button to HARDEN and avoid being smacked by the boulders.
+              </div>
+              <div class="instruct">
+                HARDEN only works while your button is pressed.
+              </div>
+              <div class="instruct">
+                Beware, HARDEN consumes HP.
+              </div>
+              <div class="instruct">
+                Hint: Watch for the boulder shadows.
+              </div>
+            </div>
           </div>
         </div>
         <canvas id="game" class="loading"></canvas>
@@ -35,7 +48,7 @@
 
           <i class="fas fa-volume-mute"></i>
           <i class="fas fa-volume-up"></i>
-        <!-- <i class="fas fa-pause" id="pause-button"></i> -->
+          <i class="fas fa-pause" id="pause-button"></i>
       </div>
       <section id="menud">
         <div class="menu-options">
