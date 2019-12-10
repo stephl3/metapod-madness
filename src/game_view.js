@@ -42,7 +42,7 @@ class GameView {
     this.audioCtx = new AudioContext();
     this.menuMusic = new Audio('assets/sounds/menu_music.mp3');
     this.menuMusic.loop = true;
-    this.menuMusic.play();
+    // this.menuMusic.play();
     this.gameMusic = new Audio('assets/sounds/game_music.mp3');
     // this.gameOverSound = new Audio('./assets/sounds/sad.wav');
     this.victoryMusic = new Audio('assets/sounds/victory_music.mp3');

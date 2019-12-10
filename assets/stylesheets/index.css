@@ -68,10 +68,10 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgb(143, 252, 143);
+  background-color: #006300;
   box-sizing: border-box;
   border-radius: 12px;
-  border: 8px ridge green;
+  border: 8px ridge white;
   padding: 16px;
   height: 240px;
   width: 480px;
@@ -88,11 +88,34 @@
   cursor: pointer;
 }
 
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-family: Oxygen, serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
 .instruct {
   font-family: Oxygen, serif;
-  font-size: 20px;
-  font-weight: 400;
-  color: black;
+  font-size: 16px;
+  color: white;
+  line-height: 20px;
+}
+
+.show-keys {
+  cursor: help;
+  color: #9d9dff;
+}
+
+.show-keys:hover {
+  text-decoration: underline;
+  color: #4e4eff;
 }
 
 #victory {
