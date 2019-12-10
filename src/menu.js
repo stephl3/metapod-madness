@@ -1,19 +1,37 @@
-const closeMainMenu = () => {
-  const mainMenu = document.getElementsByClassName('main-menu')[0];
-  mainMenu.className = 'main-menu close';
-};
+class Menu {
+  constructor(game) {
+    this.game = game;
+    this.selectFX = new Audio('assets/sounds/select.wav');
+    this.menu = document.getElementById('menu');
+    this.startButton = document.getElementById('start');
+    this.howToButton = document.getElementById('how-to');
+    this.instructions = document.getElementById('instructions');
+    this.keyBindingsButton = document.getElementById('key-bindings');
+    
+  }
 
-const openMainMenu = () => {
-  const mainMenu = document.getElementsByClassName('main-menu')[0];
-  mainMenu.className = 'main-menu';
-};
+  setMenuButtons() {
 
+  }
 
-const Menu = {
+  openMenu() {
+    this.menu.className = '';
+  }
+
+  closeMenu() {
+    this.menu.className = 'close';
+  }
+
+  openHowTo(e) {
+    
+  }
+}
+
+export default Menu;
+
+const schmenu = {
   setMenuButtons(game) {
-    const easyButton = document.getElementById('easy-button');
-    const mediumButton = document.getElementById('medium-button');
-    const hardButton = document.getElementById('hard-button');
+
     const aboutButton = document.getElementById('how-to-play-button');
     const closeAboutButton = document.getElementById('close-how-to-play');
     const menuButton = document.getElementById('menu-button');
@@ -53,15 +71,6 @@ const Menu = {
       document.getElementById('game-canvas').focus();
     };
 
-    const submitScore = (e) => {
-      e.preventDefault();
-      const nameInput = document.getElementById('name-input');
-      game.setScore(nameInput.value);
-      nameInput.value = '';
-      game.highScoreInput.className += ' close';
-      playSelectSound();
-      document.getElementById('game-canvas').focus();
-    };
 
     const muteToggle = (e) => {
       if (game.toggleMute()) {
@@ -102,7 +111,5 @@ const Menu = {
       setTimeout(() => game.start('easy'), 200);
     }
     );
-  },
-  closeMainMenu: closeMainMenu,
-  openMainMenu: openMainMenu,
+  }
 };

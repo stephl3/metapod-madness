@@ -11,17 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   const game = new Game();
   const gameView = new GameView(game, ctx);
-  const menu = document.getElementById("menu");
 
   // gameView.playMusic();
   document.querySelector('button').addEventListener("click", () => {
-    menu.style.display = "none";
+    gameView.menu.closeMenu();
     gameView.start();
   })
-  menu.addEventListener("click", () => {
-    menu.style.display = "none";
-    gameView.start();
-  })
+  // menu.addEventListener("click", () => {
+  //   menu.style.display = "none";
+  //   gameView.start();
+  // })
 
   document.body.onkeyup = function(e) {
     e.preventDefault();

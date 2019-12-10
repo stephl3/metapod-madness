@@ -1,7 +1,10 @@
+import Menu from './menu';
+
 class GameView {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
+    this.menu = new Menu(this.game);
     this.paused = true;
     this.gameOver = true;
     this.keys = [192, 52, 56, 8];
@@ -13,6 +16,9 @@ class GameView {
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.start = this.start.bind(this);
     this.animate = this.animate.bind(this);
+
+    
+    this.menu.setMenuButtons();
   }
 
   bindKeyHandlers () {

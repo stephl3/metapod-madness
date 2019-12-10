@@ -48,6 +48,10 @@
   background-image: url('../images/background/menu.jpg');
 }
 
+.close {
+  display: none;
+}
+
 #game {
   z-index: 1;
   background-image: url('../images/background/grassland.jpg');
