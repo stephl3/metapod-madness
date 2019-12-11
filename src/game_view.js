@@ -83,14 +83,14 @@ class GameView {
   }
   
   start() {
-    this.paused = false;
     this.playing = true;
     this.gameOver = false;
     this.game.over = false;
     if (!this.muteMusic) {
       this.menuMusic.pause();
+    } else {
+      this.gameMusic.muted = true;
     }
-    this.gameMusic.muted = true;
     this.gameMusic.play();
     this.bindKeyHandlers();
     this.lastTime = 0;
@@ -114,7 +114,7 @@ class GameView {
   pause() {
     this.paused = !this.paused;
     if (!this.muteMusic) {
-      this.gameMusic.volume = 0.3;
+      this.gameMusic.volume = 0.2;
     } else {
       this.gameMusic.volume = 1.0;
     }

@@ -46,7 +46,7 @@ class Metapod extends MovingObject {
       this.img.src = 'assets/images/metapod/harden_metapod.png';
       this.hardened = true;
       // this.vel = [0, 0];
-      this.HP -= 2;
+      this.HP -= 0.2;
       if (this.HP < 1) {
         this.faint();
       }

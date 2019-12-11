@@ -5,18 +5,22 @@ class Menu {
     this.closeFX = new Audio('assets/sounds/close.wav');
 
     this.soundButton = document.getElementById('sound');
+    this.pauseButton = document.getElementById('pause');
+    
     this.menu = document.getElementById('menu');
-    this.victoryMenu = document.getElementById("victory");
     this.startButton = document.getElementById('start');
     this.howToButton = document.getElementById('how-to');
     this.instructionsBg = document.getElementById('instructions-bg');
     this.instructions = document.getElementById('instructions');
     this.closeButton = document.getElementById('close-icon-container');
     this.keyBindingsButton = document.getElementById('key-bindings');
+    
+    this.victoryMenu = document.getElementById("victory");
     this.restartButton = document.getElementById('restart');
     this.quitButton = document.getElementById('quit');
 
     this.toggleSound = this.toggleSound.bind(this);
+    this.pauseGame = this.pauseGame.bind(this);
     this.startGame = this.startGame.bind(this);
     this.openHowTo = this.openHowTo.bind(this);
     this.closeHowTo = this.closeHowTo.bind(this);
@@ -26,6 +30,7 @@ class Menu {
 
   bindMenuButtons() {
     this.soundButton.addEventListener('click', this.toggleSound);
+    this.pauseButton.addEventListener('click', this.pauseGame);
     this.startButton.addEventListener('click', this.startGame);
     this.howToButton.addEventListener('click', this.openHowTo);
     this.closeButton.addEventListener('click', this.closeHowTo);
@@ -40,6 +45,10 @@ class Menu {
     } else {
       this.soundButton.innerHTML = "<i class='fas fa-volume-up' id='sound-icon'></i>"
     }
+  }
+
+  pauseGame() {
+    this.gameView.pause();
   }
 
   openMenu() {
