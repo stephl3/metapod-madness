@@ -4,7 +4,7 @@ class GameView {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
-    this.menu = new Menu(this.game);
+    this.menu = new Menu(this);
     this.paused = true;
     this.gameOver = true;
     this.keys = [192, 52, 56, 8];
@@ -15,10 +15,13 @@ class GameView {
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.start = this.start.bind(this);
+    this.restart = this.restart.bind(this);
+    this.quit = this.quit.bind(this);
     this.animate = this.animate.bind(this);
 
     
-    this.menu.setMenuButtons();
+    this.menu.bindMenuButtons();
+    this.menu.openMenu();
   }
 
   bindKeyHandlers () {
@@ -52,6 +55,7 @@ class GameView {
     this.gameMusic = new Audio('assets/sounds/game_music.mp3');
     // this.gameOverSound = new Audio('./assets/sounds/sad.wav');
     this.victoryMusic = new Audio('assets/sounds/victory_music.mp3');
+    this.victoryMusic.loop = true;
   }
 
   playMusic() {
@@ -94,9 +98,19 @@ class GameView {
 
   end() {
     const victoryMenu = document.getElementById("victory");
-    victoryMenu.style.display = "initial";
+    victoryMenu.classList.remove('close');
     this.gameMusic.pause();
     this.victoryMusic.play();
+  }
+
+  restart() {
+
+  }
+
+  quit() {
+    this.gameOver = true;
+    this.victoryMusic.pause();
+    this.menuMusic.play();
   }
 
   animate(time) {

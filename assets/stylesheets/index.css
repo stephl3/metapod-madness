@@ -13,10 +13,6 @@
   position: absolute;
 }
 
-#title {
-  height: 50px;
-}
-
 #canvas-container {
   position: relative;
   background: black;
@@ -29,6 +25,20 @@
   box-sizing: border-box;
   border-radius: 12px;
   box-shadow: 8px 8px rgba(41, 41, 41, 0.6);
+}
+
+#sound-icon-container {
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+}
+
+#sound-icon {
+  color: black;
+  width: 24px;
+  height: 24px;
 }
 
 #game, #menu, #victory {
@@ -46,10 +56,38 @@
 #menu {
   z-index: 2;
   background-image: url('../images/background/menu.jpg');
+  padding: 24px;
 }
 
-.close {
-  display: none;
+#title-container {
+  display: flex;
+  justify-content: center;
+  height: 72px;
+}
+
+#title {
+  height: 100%;
+  width: auto;
+}
+
+#main-options {
+  padding-top: 200px;
+  padding-left: 100px;
+  line-height: 36px;
+}
+
+.option {
+  width: fit-content;
+  font-family: Oxygen, serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
+.option:hover {
+  cursor: pointer;
+  color: gray;
+  text-decoration: underline;
 }
 
 #game {
@@ -72,10 +110,10 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #006300;
+  background-color: green;
   box-sizing: border-box;
   border-radius: 12px;
-  border: 8px ridge white;
+  border: 4px ridge white;
   padding: 16px;
   height: 240px;
   width: 480px;
@@ -84,11 +122,30 @@
   justify-content: space-between;
 }
 
-#close-icon {
+#close-icon-container {
   position: absolute;
-  background-color: white;
-  top: 4px;
-  right: 4px;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 50%;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#close-icon-container:hover {
+  background-color: #006300;
+  color: silver;
+}
+
+#close-icon {
+  font-family: Oxygen, serif;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -125,7 +182,6 @@
 #victory {
   z-index: 3;
   background-image: url('../images/background/victory.jpg');
-  display: none;
 }
 
 /* 
@@ -147,34 +203,19 @@
   position: relative;
   left: 140px;
   top: 280px;
-  height: 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  line-height: 36px;
 }
 
-.option {
-  font-family: Oxygen, serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: white;
-}
-
-.option:hover {
-  cursor: pointer;
-  color: silver;
-  text-decoration: underline;
-}
 
 #menud {
-  margin-top: 700px;
+  margin-top: 20px;
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   border-radius: 12px;
   box-shadow: 4px 4px rgba(41, 41, 41, 0.6);
   width: 800px;
-  height: 120px;
+  height: 60px;
 }
 
 .menu-options {
@@ -210,25 +251,6 @@
   border-radius: 8px;
 }
 
-#start-game {
-  cursor: pointer;
-  outline: none;
-  border: none;
-  padding: 8px;
-  margin: 10px;
-  background-color: transparent;
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 20px;
-  font-weight: bolder;
-  box-sizing: border-box;
-  border-radius: 16px;
-}
-
-#start-game:hover {
-  background-color: rgba(0, 120, 4, 0.8);
-}
-
 #pause-button {
   position: absolute;
   top: 10;
@@ -237,4 +259,9 @@
   color: gray;
   width: 28px;
   height: 28px;
+}
+
+
+.close {
+  display: none;
 }

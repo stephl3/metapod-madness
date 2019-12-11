@@ -13,14 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const gameView = new GameView(game, ctx);
 
   // gameView.playMusic();
-  document.querySelector('button').addEventListener("click", () => {
-    gameView.menu.closeMenu();
-    gameView.start();
-  })
-  // menu.addEventListener("click", () => {
-  //   menu.style.display = "none";
-  //   gameView.start();
-  // })
 
   document.body.onkeyup = function(e) {
     e.preventDefault();

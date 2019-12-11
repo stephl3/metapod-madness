@@ -9,50 +9,57 @@
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" data-auto-a11y="true"></script>
     <script type="application/javascript" src="main.js"></script>
   </head>
   <body>
     <div id="background">
       <div id="canvas-container">
+        <div id="sound-icon-container">
+          <i class="fas fa-volume-up" id="sound-icon"></i>
+        </div>
         <div id="menu">
-          <img src="./assets/images/title.png" id="title">
-          <div id="options" class="modal-background?">
+          <div id="title-container">
+            <img src="./assets/images/title.png" id="title">
+          </div>
+          <div id="main-options">
             <div id="start" class="option">Start</div>
             <div id="how-to" class="option">How to Play</div>
             <div id="key-bindings" class="option">Key Bindings</div>
-            <div id="instructions" class="modal-child?">
-              <i className="fas fa-times" id="close-icon"></i>
-              <div class="title-container">
-                <div class="title">
-                  How to Play
+            <div id="instructions-bg">
+              <div id="instructions" class="modal-child">
+                <div id="close-icon-container">
+                  <i class="fas fa-times" id="close-icon"></i>
                 </div>
-              </div>
-              <div class="instruct">
-                Press the <span class="show-keys">appropriate key</span> to HARDEN and avoid being smacked by the boulders.
-              </div>
-              <div class="instruct">
-                HARDEN only works while your key is pressed.
-              </div>
-              <div class="instruct">
-                Beware, HARDEN consumes HP.
-              </div>
-              <div class="instruct">
-                Hint: Watch for the boulder shadows.
+                <div class="title-container">
+                  <div class="title">
+                    How to Play
+                  </div>
+                </div>
+                <div class="instruct">
+                  Press the <span class="show-keys">appropriate key</span> to HARDEN and avoid being smacked by the boulders.
+                </div>
+                <div class="instruct">
+                  HARDEN only works while your key is pressed.
+                </div>
+                <div class="instruct">
+                  Beware, HARDEN consumes HP.
+                </div>
+                <div class="instruct">
+                  Hint: Watch for the boulder shadows.
+                </div>
               </div>
             </div>
           </div>
         </div>
         <canvas id="game" class="loading"></canvas>
-        <div id="victory">
+        <div id="victory" class="close">
           <div class="victory-options">
             <div id="restart" class="option">Restart</div>
             <div id="quit" class="option">Quit</div>
           </div>
         </div>
 
-          <i class="fas fa-volume-mute"></i>
-          <i class="fas fa-volume-up"></i>
           <i class="fas fa-pause" id="pause-button"></i>
       </div>
       <section id="menud">
@@ -63,10 +70,15 @@
             <div class="key">8</div>
             <div class="key">del</div>
           </div>
-          <button id="start-game">BEGIN MADNESS</button>
         </div>
       <nav>
-        
+        <div>Created by: Stephen Lee</div>
+        <div class="links">
+          <i class="far fa-folder-open link"></i>
+          <i class="fab fa-github link"></i>
+          <i class="fab fa-linkedin link"></i>
+          <i class="fab fa-angellist link"></i>
+        </div>
       </nav>
     </section>
   </div>
