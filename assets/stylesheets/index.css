@@ -27,7 +27,7 @@
   box-shadow: 8px 8px rgba(41, 41, 41, 0.6);
 }
 
-#sound-icon-container {
+#sound {
   position: absolute;
   z-index: 5;
   right: 12px;
@@ -54,7 +54,7 @@
 }
 
 #menu {
-  z-index: 2;
+  z-index: 3;
   background-image: url('../images/background/menu.jpg');
   padding: 24px;
 }
@@ -93,6 +93,20 @@
 #game {
   z-index: 1;
   background-image: url('../images/background/grassland.jpg');
+}
+
+#pause {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  top: 12px;
+  cursor: pointer;
+}
+
+#pause-icon {
+  color: black;
+  width: 24px;
+  height: 24px;
 }
 
 .modal-background {
@@ -183,21 +197,6 @@
   z-index: 3;
   background-image: url('../images/background/victory.jpg');
 }
-
-/* 
-#menu {
-  position: absolute;
-  z-index: 2;
-  background-image: url('../images/background/menu.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 12px;
-  box-shadow: 4px 4px rgba(41, 41, 41, 0.6);
-  width: 800px;
-  height: 600px;
-} */
 
 .victory-options {
   position: relative;

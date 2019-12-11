@@ -5,20 +5,24 @@ class GameView {
     this.game = game;
     this.ctx = ctx;
     this.menu = new Menu(this);
-    this.paused = true;
+    this.paused = false;
+    this.playing = false;
     this.gameOver = true;
     this.keys = [192, 52, 56, 8];
-    this.muteMusic = false;
+    this.muteMusic = true;
     this.setSounds();
 
     this.metapods = this.game.addMetapods();
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
     this.start = this.start.bind(this);
+    this.pause = this.pause.bind(this);
+    this.end = this.end.bind(this);
     this.restart = this.restart.bind(this);
     this.quit = this.quit.bind(this);
     this.animate = this.animate.bind(this);
-
+    
     
     this.menu.bindMenuButtons();
     this.menu.openMenu();
@@ -48,25 +52,45 @@ class GameView {
   };
 
   setSounds() {
-    this.audioCtx = new AudioContext();
     this.menuMusic = new Audio('assets/sounds/menu_music.mp3');
     this.menuMusic.loop = true;
-    // this.menuMusic.play();
+    // this.menuMusic.muted = true;
     this.gameMusic = new Audio('assets/sounds/game_music.mp3');
-    // this.gameOverSound = new Audio('./assets/sounds/sad.wav');
+    // this.gameMusic.muted = true;
     this.victoryMusic = new Audio('assets/sounds/victory_music.mp3');
     this.victoryMusic.loop = true;
+    // this.victoryMusic.muted = true;
   }
 
-  playMusic() {
-    this.audioCtx.resume();
+  toggleMute() {
+    if (this.muteMusic) {
+      this.muteMusic = false;
+    if (this.gameOver && this.playing) {
+      this.victoryMusic.play();
+    } else if (!this.paused && this.playing) {
+        this.gameMusic.muted = false;
+        this.gameMusic.play();
+      } else {
+        this.menuMusic.play();
+      };
+    } else {
+      this.muteMusic = true;
+      this.gameMusic.pause();
+      this.menuMusic.pause();
+      this.victoryMusic.pause();
+    }
+    return this.muteMusic;
   }
   
   start() {
     this.paused = false;
+    this.playing = true;
     this.gameOver = false;
     this.game.over = false;
-    this.menuMusic.pause();
+    if (!this.muteMusic) {
+      this.menuMusic.pause();
+    }
+    this.gameMusic.muted = true;
     this.gameMusic.play();
     this.bindKeyHandlers();
     this.lastTime = 0;
@@ -89,7 +113,7 @@ class GameView {
 
   pause() {
     this.paused = !this.paused;
-    if (this.gameMusic.volume > 0.3) {
+    if (!this.muteMusic) {
       this.gameMusic.volume = 0.3;
     } else {
       this.gameMusic.volume = 1.0;
@@ -97,10 +121,13 @@ class GameView {
   }
 
   end() {
+    this.gameOver = true;
     const victoryMenu = document.getElementById("victory");
     victoryMenu.classList.remove('close');
-    this.gameMusic.pause();
-    this.victoryMusic.play();
+    if (!this.muteMusic) {
+      this.gameMusic.pause();
+      this.victoryMusic.play();
+    }
   }
 
   restart() {
@@ -108,9 +135,12 @@ class GameView {
   }
 
   quit() {
+    this.playing = false;
     this.gameOver = true;
-    this.victoryMusic.pause();
-    this.menuMusic.play();
+    if (!this.muteMusic) {
+      this.victoryMusic.pause();
+      this.menuMusic.play();
+    }
   }
 
   animate(time) {

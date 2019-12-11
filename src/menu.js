@@ -4,6 +4,7 @@ class Menu {
     this.selectFX = new Audio('assets/sounds/select.wav');
     this.closeFX = new Audio('assets/sounds/close.wav');
 
+    this.soundButton = document.getElementById('sound');
     this.menu = document.getElementById('menu');
     this.victoryMenu = document.getElementById("victory");
     this.startButton = document.getElementById('start');
@@ -15,6 +16,7 @@ class Menu {
     this.restartButton = document.getElementById('restart');
     this.quitButton = document.getElementById('quit');
 
+    this.toggleSound = this.toggleSound.bind(this);
     this.startGame = this.startGame.bind(this);
     this.openHowTo = this.openHowTo.bind(this);
     this.closeHowTo = this.closeHowTo.bind(this);
@@ -23,11 +25,21 @@ class Menu {
   }
 
   bindMenuButtons() {
+    this.soundButton.addEventListener('click', this.toggleSound);
     this.startButton.addEventListener('click', this.startGame);
     this.howToButton.addEventListener('click', this.openHowTo);
     this.closeButton.addEventListener('click', this.closeHowTo);
     this.restartButton.addEventListener('click', this.restartGame);
     this.quitButton.addEventListener('click', this.quitGame);
+  }
+
+  toggleSound() {
+    this.selectFX.play();
+    if (this.gameView.toggleMute()) {
+      this.soundButton.innerHTML = "<i class='fas fa-volume-mute' id='sound-icon'></i>"
+    } else {
+      this.soundButton.innerHTML = "<i class='fas fa-volume-up' id='sound-icon'></i>"
+    }
   }
 
   openMenu() {
