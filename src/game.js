@@ -17,6 +17,8 @@ class Game {
     this.berries = [];
     this.shadows = [];
 
+    this.start = this.start.bind(this);
+    this.reset = this.reset.bind(this);
     this.addMetapods = this.addMetapods.bind(this);
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
@@ -44,6 +46,33 @@ class Game {
   //   const index = Math.round(Math.random());
   //   return metapodImgs[index];
   // }
+
+  start() {
+    setTimeout(() => {
+      this.addBoulders();
+    }, 3000);
+    this.loop = () => {
+      setInterval(() => {
+        this.addBoulders();
+        setTimeout(() => {
+          this.addBoulders();
+          setTimeout(() => {
+            this.addBoulders();
+          }, 2000);
+        }, 1000);
+      }, 5000);
+    };
+
+    this.loop();
+  }
+
+  reset() {
+    this.metapods = [];
+    this.metapodsHardened = [false, false, false, false];
+    this.boulders = [];
+    this.berries = [];
+    this.shadows = [];
+  }
 
   addMetapods() {
     const metapodPositions = [
@@ -231,7 +260,10 @@ class Game {
   step(delta) {
     this.moveObjects(delta);
     this.checkCollisions();
-    if (this.checkGameOver()) this.over = true;
+    if (this.checkGameOver()) {
+      this.loop = () => null;
+      this.over = true;
+    }
   }
 };
 

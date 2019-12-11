@@ -12,8 +12,6 @@ class GameView {
     this.muteMusic = true;
     this.setSounds();
 
-    this.metapods = this.game.addMetapods();
-
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
     this.start = this.start.bind(this);
@@ -99,20 +97,10 @@ class GameView {
     }
     this.gameMusic.play();
     this.bindKeyHandlers();
+    this.game.addMetapods();
+    this.game.start();
     this.lastTime = 0;
-    
-    setTimeout(() => {
-      this.game.addBoulders();
-    }, 3000);
-    setInterval(() => {
-      this.game.addBoulders();
-      setTimeout(() => {
-        this.game.addBoulders();
-        setTimeout(() => {
-          this.game.addBoulders();
-        }, 2000)
-      }, 1000);
-    }, 5000);
+
     // start animation
     requestAnimationFrame(this.animate);
   }
@@ -129,6 +117,9 @@ class GameView {
   end() {
     this.state = "victory";
     this.gameOver = true;
+    this.game.over = true;
+    this.game.reset();
+
     const victoryMenu = document.getElementById("victory");
     victoryMenu.classList.remove('close');
     if (!this.muteMusic) {
@@ -138,12 +129,18 @@ class GameView {
   }
 
   restart() {
-
+    this.state = "game";
+    this.gameOver = false;
+    this.game.over = false;
+    this.game.reset();
   }
 
   quit() {
     this.state = "menu";
     this.gameOver = true;
+    this.game.over  = false;
+    this.game.reset();
+
     if (!this.muteMusic) {
       this.victoryMusic.pause();
       this.menuMusic.play();
