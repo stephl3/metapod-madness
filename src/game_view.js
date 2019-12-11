@@ -6,7 +6,7 @@ class GameView {
     this.ctx = ctx;
     this.menu = new Menu(this);
     this.paused = false;
-    this.playing = false;
+    this.state = "menu";
     this.gameOver = true;
     this.keys = [192, 52, 56, 8];
     this.muteMusic = true;
@@ -65,25 +65,31 @@ class GameView {
   toggleMute() {
     if (this.muteMusic) {
       this.muteMusic = false;
-    if (this.gameOver && this.playing) {
-      this.victoryMusic.play();
-    } else if (!this.paused && this.playing) {
-        this.gameMusic.muted = false;
-        this.gameMusic.play();
-      } else {
-        this.menuMusic.play();
+      switch (this.state) {
+        case "menu":
+          this.menuMusic.play();
+          break;
+        case "game":
+          this.gameMusic.muted = false;
+          this.gameMusic.play();
+          break;
+        case "victory":
+          this.victoryMusic.play();
+          break;
+        default:
+          break;
       };
     } else {
       this.muteMusic = true;
       this.gameMusic.pause();
       this.menuMusic.pause();
       this.victoryMusic.pause();
-    }
+    };
     return this.muteMusic;
   }
   
   start() {
-    this.playing = true;
+    this.state = "game";
     this.gameOver = false;
     this.game.over = false;
     if (!this.muteMusic) {
@@ -121,6 +127,7 @@ class GameView {
   }
 
   end() {
+    this.state = "victory";
     this.gameOver = true;
     const victoryMenu = document.getElementById("victory");
     victoryMenu.classList.remove('close');
@@ -135,7 +142,7 @@ class GameView {
   }
 
   quit() {
-    this.playing = false;
+    this.state = "menu";
     this.gameOver = true;
     if (!this.muteMusic) {
       this.victoryMusic.pause();
