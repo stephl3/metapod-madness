@@ -52,7 +52,7 @@ class Metapod extends MovingObject {
     this.smashed = true;
     setTimeout(() => {
       this.smashed = false;
-    }, 350);
+    }, 150);
 
     this.img.src = 'assets/images/metapod/hurt_metapod2.png';
     setTimeout(() => {
@@ -69,13 +69,13 @@ class Metapod extends MovingObject {
                 this.img.src = 'assets/images/metapod/hurt_metapod2.png'
                 setTimeout(() => {
                   this.img.src = 'assets/images/metapod/metapod.png'
-                }, 350);
-              }, 300);
-            }, 250);
-          }, 200);
-        }, 150);
-      }, 100);
-    }, 50);
+                }, 140);
+              }, 120);
+            }, 100);
+          }, 80);
+        }, 60);
+      }, 40);
+    }, 20);
 
     if (this.HP > 30) {
       this.HP -= 30;
