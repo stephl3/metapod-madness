@@ -80,18 +80,18 @@ class Boulder extends MovingObject {
   }
 
   bounce() {
-    this.smashFX.play();
     setTimeout(() => {
       this.width += 8;
       this.height += 8;
       this.pos[0] -= 4;
       this.pos[1] += 2;
       this.vel[1] = 4;
+      this.smashFX.play();
       setTimeout(() => {
         this.vel[1] = 8;
         setTimeout(() => {
           this.remove(this);
-        }, 300);
+        }, 250);
       }, 100);
     }, 50);
   }
