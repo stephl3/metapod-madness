@@ -1,3 +1,4 @@
+import Game from "./game";
 import GameView from "./game_view";
 
 class Menu {
@@ -20,7 +21,7 @@ class Menu {
     this.keyBindingsButton = document.getElementById('key-bindings');
     
     this.victoryMenu = document.getElementById("victory");
-    this.restartButton = document.getElementById('restart');
+    // this.restartButton = document.getElementById('restart');
     this.quitButton = document.getElementById('quit');
 
     this.toggleSound = this.toggleSound.bind(this);
@@ -30,7 +31,7 @@ class Menu {
     this.closeHowTo = this.closeHowTo.bind(this);
     this.highlightKeys = this.highlightKeys.bind(this);
     this.unhighlightKeys = this.unhighlightKeys.bind(this);
-    this.restartGame = this.restartGame.bind(this);
+    // this.restartGame = this.restartGame.bind(this);
     this.quitGame = this.quitGame.bind(this);
   }
 
@@ -42,7 +43,7 @@ class Menu {
     this.closeButton.addEventListener('click', this.closeHowTo);
     this.keysButton.addEventListener('mouseenter', this.highlightKeys);
     this.keysButton.addEventListener('mouseleave', this.unhighlightKeys);
-    this.restartButton.addEventListener('click', this.restartGame);
+    // this.restartButton.addEventListener('click', this.restartGame);
     this.quitButton.addEventListener('click', this.quitGame);
   }
 
@@ -102,111 +103,27 @@ class Menu {
     this.keysArray.forEach(key => key.classList.remove('highlight'));
   }
 
-  restartGame() {
-    this.selectFX.play();
-    this.closeVictoryMenu();
-
-    this.gameView.start();
-  }
+  // restartGame() {
+  //   this.selectFX.play();
+  //   this.closeVictoryMenu();
+  //   location.reload(false);
+  //     .then(() => document.findElementById('start').click());
+  // }
 
   quitGame() {
     this.selectFX.play();
-    const canvas = document.getElementById('game');
-    canvas.width = 800;
-    canvas.height = 600;
+    this.closeVictoryMenu();
+    location.reload(false);
+    // const canvas = document.getElementById('game');
+    // canvas.width = 800;
+    // canvas.height = 600;
 
-    const ctx = canvas.getContext('2d');
-    const game = newGame();
-    const gameView = new GameView(game, ctx);
-    // this.closeVictoryMenu();
+    // const ctx = canvas.getContext('2d');
+    // const game = new Game();
+    // const gameView = new GameView(game, ctx);
     // this.openMenu();
     // this.gameView.quit();
   }
 }
 
 export default Menu;
-
-const schmenu = {
-  setMenuButtons(game) {
-
-    const aboutButton = document.getElementById('how-to-play-button');
-    const closeAboutButton = document.getElementById('close-how-to-play');
-    const menuButton = document.getElementById('menu-button');
-    const submitHighScoreButton = document.getElementById('submit-highscore');
-    const muteButton = document.getElementById('mute-button');
-    const selectSound = new Audio('./assets/sounds/select.wav');
-
-    const openAbout = (e) => {
-      const aboutScreen = document.getElementsByClassName('how-to-play-container')[0];
-      if (aboutScreen.className.indexOf('how-to-play-open') !== -1) {
-        aboutScreen.className = 'how-to-play-container group';
-        playSelectSound();
-        game.unpause();
-      } else {
-        aboutScreen.className += ' how-to-play-open';
-        playSelectSound();
-        game.pause();
-      }
-    };
-
-    const playSelectSound = () => {
-      selectSound.pause();
-      selectSound.currentTime = 0;
-      selectSound.play();
-    };
-
-    const backToMenu = () => {
-      game.over = true;
-      // game.gamePlaying = false;
-      game.backgroundMusic.pause();
-      game.backgroundMusic.currentTime = 0;
-      playSelectSound();
-      game.openMenu();
-      document.getElementById('game-over-menu').className += ' close';
-      openMainMenu();
-      game.ctx.clearRect(0, 0, 800, 300);
-      document.getElementById('game-canvas').focus();
-    };
-
-
-    const muteToggle = (e) => {
-      if (game.toggleMute()) {
-        muteButton.className = 'toggled';
-      } else {
-        muteButton.className = '';
-      }
-      playSelectSound();
-      document.getElementById('game-canvas').focus();
-    };
-
-    game.gameCanvas.addEventListener('keydown', (e) => {
-      if (e.code === 'Escape' && game.gamePlaying) {
-        e.preventDefault();
-        backToMenu();
-      }
-    });
-    muteButton.addEventListener('click', muteToggle);
-    menuButton.addEventListener('click', backToMenu);
-    aboutButton.addEventListener('click', openAbout);
-    closeAboutButton.addEventListener('click', openAbout);
-    submitHighScoreButton.addEventListener('click', submitScore);
-    hardButton.addEventListener('click', (e) => {
-      closeMainMenu();
-      playSelectSound();
-      setTimeout(() => game.start('hard'), 200);
-    }
-    );
-    mediumButton.addEventListener('click', (e) => {
-      closeMainMenu();
-      playSelectSound();
-      setTimeout(() => game.start('medium'), 200);
-    }
-    );
-    easyButton.addEventListener('click', (e) => {
-      closeMainMenu();
-      playSelectSound();
-      setTimeout(() => game.start('easy'), 200);
-    }
-    );
-  }
-};

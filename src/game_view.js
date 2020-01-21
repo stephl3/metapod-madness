@@ -17,7 +17,7 @@ class GameView {
     this.start = this.start.bind(this);
     // this.pause = this.pause.bind(this);
     this.end = this.end.bind(this);
-    this.restart = this.restart.bind(this);
+    // this.restart = this.restart.bind(this);
     this.quit = this.quit.bind(this);
     this.animate = this.animate.bind(this);
     
@@ -128,12 +128,12 @@ class GameView {
     }
   }
 
-  restart() {
-    this.state = "game";
-    this.gameOver = false;
-    this.game.over = false;
-    this.game.reset();
-  }
+  // restart() {
+  //   this.state = "game";
+  //   this.gameOver = false;
+  //   this.game.over = false;
+  //   this.game.reset();
+  // }
 
   quit() {
     this.state = "menu";
