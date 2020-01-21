@@ -260,6 +260,42 @@
   line-height: 36px;
 }
 
+#victorious {
+  position: absolute;
+  bottom: 95px;
+  right: 225px;
+  width: 96px;
+  height: 64px;
+  border-radius: 50%;
+  border: 6px solid black;
+  color: white;
+  font-family: Oxygen;
+  font-size: 48px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#victorious.p1 {
+  background-color: #0000eb;
+}
+
+#victorious.p2 {
+  background-color: green;
+}
+
+#victorious.p3 {
+  background-color: #c40000;
+}
+
+#victorious.p4 {
+  background-color: goldenrod;
+}
+
+
+
+/* INFO */
 #info {
   cursor: default;
   margin-top: 20px;

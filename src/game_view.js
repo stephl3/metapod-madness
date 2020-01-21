@@ -6,10 +6,10 @@ class GameView {
     this.game = game;
     this.ctx = ctx;
     this.menu = new Menu(this);
-    // this.paused = false;
+    this.paused = false;
     this.state = "menu";
     this.gameOver = true;
-    this.keys = [49, 53, 57, 8]; // maps to 1 5 9 del
+    this.keys = [1, 5, 9, 'Backspace']; // maps to 1 5 9 del
     this.muteMusic = true;
     this.setSounds();
 
@@ -18,7 +18,6 @@ class GameView {
     this.start = this.start.bind(this);
     // this.pause = this.pause.bind(this);
     this.end = this.end.bind(this);
-    // this.restart = this.restart.bind(this);
     this.quit = this.quit.bind(this);
     this.animate = this.animate.bind(this);
     
@@ -31,7 +30,8 @@ class GameView {
     
     const keyDownHandler = (e) => {
       for (let i = 0; i < 4; i++) {
-        if (e.keyCode == keys[i]) {
+        debugger
+        if (e.key == keys[i]) {
           this.game.metapodsHardened[i] = true;
         };
       };
@@ -39,7 +39,7 @@ class GameView {
     
     const keyUpHandler = (e) => {
       for (let i = 0; i < 4; i++) {
-        if (e.keyCode == keys[i]) {
+        if (e.key == keys[i]) {
           this.game.metapodsHardened[i] = false;
         };
       };
@@ -87,16 +87,20 @@ class GameView {
   }
   
   start() {
+    this.bindKeyHandlers();
     this.state = "game";
+    this.winner = null;
+    this.paused = false;
     this.gameOver = false;
     this.game.over = false;
     if (!this.muteMusic) {
       this.menuMusic.pause();
+      this.victoryMusic.pause();
+      this.victoryMusic.currentTime = 0;
     } else {
       this.gameMusic.muted = true;
     }
     this.gameMusic.play();
-    this.bindKeyHandlers();
     this.game.addMetapods();
     this.game.start();
     this.lastTime = 0;
@@ -116,24 +120,24 @@ class GameView {
 
   end() {
     this.state = "victory";
+    this.paused = true;
     this.gameOver = true;
+    this.winner = this.game.winner.idx + 1;
     this.game = new Game();
     this.ctx.clearRect(0, 0, 800, 600);
-    
+
     const victoryMenu = document.getElementById("victory");
     victoryMenu.classList.remove('close');
+
+    const victorious = victoryMenu.lastElementChild;
+    victorious.innerHTML = `<div>P${this.winner}</div>`;
+    victorious.classList.add(`p${this.winner}`);
+
     if (!this.muteMusic) {
       this.gameMusic.pause();
       this.gameMusic.currentTime = 0;
       this.victoryMusic.play();
     }
-  }
-
-  restart() {
-    this.state = "game";
-    this.gameOver = false;
-    this.game.over = false;
-    this.game.reset();
   }
 
   quit() {
@@ -159,11 +163,12 @@ class GameView {
     // every call to animate requests causes another call to animate
     if (!this.paused) {
       requestAnimationFrame(this.animate);
-      if (this.gameOver) {
-        setTimeout(() => {
-          this.end();
-        }, 3000);
-      }
+    }
+    if (this.gameOver) {
+      setTimeout(() => {
+        this.paused = true;
+        this.end();
+      }, 2000);
     }
   }
 };

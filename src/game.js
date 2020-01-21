@@ -13,6 +13,8 @@ class Game {
 
     this.metapods = [];
     this.metapodsHardened = [false, false, false, false];
+    this.losers = [];
+    this.winner = null;
     this.boulders = [];
     this.berries = [];
     this.shadows = [];
@@ -50,26 +52,41 @@ class Game {
     setTimeout(() => this.addBoulders(), 3000);
     setTimeout(() => this.addBoulders(), 6000);
     setTimeout(() => this.addBoulders(), 9000);
-    setTimeout(() => this.addBoulders(), 12000);
+    setTimeout(() => this.addBoulders(), 10000);
     setTimeout(() => this.addBoulders(), 13000);
+    setTimeout(() => this.addBoulders(), 14000);
     setTimeout(() => this.addBoulders(), 15000);
-    setTimeout(() => this.addBoulders(), 15500);
-    setTimeout(() => this.addBoulders(), 16000);
-
-
-    // this.loop = () => {
-    //   setInterval(() => {
-    //     this.addBoulders();
-    //     setTimeout(() => {
-    //       this.addBoulders();
-    //       setTimeout(() => {
-    //         this.addBoulders();
-    //       }, 2000);
-    //     }, 1000);
-    //   }, 5000);
-    // };
-
-    // this.loop();
+    setTimeout(() => this.addBoulders(), 18000);
+    setTimeout(() => this.addBoulders(), 18500);
+    setTimeout(() => this.addBoulders(), 19000);
+    setTimeout(() => this.addBoulders(), 22000);
+    setTimeout(() => this.addBoulders(), 22500);
+    setTimeout(() => this.addBoulders(), 23000);
+    setTimeout(() => this.addBoulders(), 23500);
+    setTimeout(() => this.addBoulders(), 24000);
+    setTimeout(() => this.addBoulders(), 27000);
+    setTimeout(() => this.addBoulders(), 28000);
+    setTimeout(() => this.addBoulders(), 29000);
+    setTimeout(() => this.addBoulders(), 32000);
+    setTimeout(() => this.addBoulders(), 33000);
+    setTimeout(() => this.addBoulders(), 36000);
+    setTimeout(() => this.addBoulders(), 36500);
+    setTimeout(() => this.addBoulders(), 37000);
+    setTimeout(() => this.addBoulders(), 37500);
+    setTimeout(() => this.addBoulders(), 38000);
+    setTimeout(() => this.addBoulders(), 41000);
+    setTimeout(() => this.addBoulders(), 41500);
+    setTimeout(() => this.addBoulders(), 42000);
+    setTimeout(() => this.addBoulders(), 45000);
+    setTimeout(() => this.addBoulders(), 46000);
+    setTimeout(() => this.addBoulders(), 47000);
+    setTimeout(() => this.addBoulders(), 48000);
+    setTimeout(() => this.addBoulders(), 51000);
+    setTimeout(() => this.addBoulders(), 51500);
+    setTimeout(() => this.addBoulders(), 52000);
+    setTimeout(() => this.addBoulders(), 52500);
+    setTimeout(() => this.addBoulders(), 53000);
+    setTimeout(() => this.addBoulders(), 56000);
   }
 
   addMetapods() {
@@ -202,9 +219,15 @@ class Game {
   }
 
   checkGameOver() {
-    const faintedMetapods = this.metapods.filter(metapod => metapod.fainted)
-  
-    if (faintedMetapods.length === 3) {
+    this.metapods.forEach(metapod => {
+      let metapodIdx = metapod.idx;
+      if (metapod.fainted && !this.losers.includes(metapodIdx)) {
+        this.losers.push(metapodIdx);
+      }
+    });
+    
+    if (this.losers.length >= 3) {
+      this.winner = this.metapods.find(metapod => !metapod.fainted);
       return true;
     } else {
       return false;

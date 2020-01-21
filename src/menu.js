@@ -18,9 +18,10 @@ class Menu {
     this.closeButton = document.getElementById('close-button');
     this.keysButton = document.getElementById('show-keys');
     this.keysArray = Array.from(document.getElementsByClassName('key'));
-    this.keyBindingsButton = document.getElementById('key-bindings');
+    // this.keyBindingsButton = document.getElementById('key-bindings');
     
     this.victoryMenu = document.getElementById("victory");
+    this.victorious = document.getElementById("victorious");
     this.restartButton = document.getElementById('restart');
     this.quitButton = document.getElementById('quit');
 
@@ -71,6 +72,7 @@ class Menu {
   }
 
   closeVictoryMenu() {
+    this.victorious.className = '';
     this.victoryMenu.classList.add('close');
   }
 

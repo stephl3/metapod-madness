@@ -15,47 +15,36 @@ class Metapod extends MovingObject {
   }
 
   faint() {
-    if (this.HP < 1) {      
-      this.vel = [0, 0];
-      this.hardened = true;
-      this.harden = () => null;
-      this.fainted = true;
-      this.faintFX.play();
-      
+    this.faintFX.play();
+    this.smashed = false;
+    this.fainted = true;
+    this.harden = () => null;
+    this.hardened = true;
+
+    this.img.src = 'assets/images/null.png';
+    setTimeout(() => {
+      this.img.src = 'assets/images/metapod/faint_metapod.png';
       setTimeout(() => {
         this.img.src = 'assets/images/null.png';
         setTimeout(() => {
-          this.img.src = 'assets/images/metapod/metapod.png';
-          setTimeout(() => {
-            this.img.src = 'assets/images/null.png';
-            setTimeout(() => {
-              this.img.src = 'assets/images/metapod/metapod.png';
-              setTimeout(() => {
-                this.img.src = 'assets/images/metapod/faint_metapod.png';
-                this.faint = () => null;
-              }, 500);
-            }, 400);
-          }, 250);
-        }, 150);
-      }, 0);
-    }
+          this.img.src = 'assets/images/metapod/faint_metapod.png';
+        }, 300);
+      }, 200);
+    }, 100);
   }
 
   harden() {
     if (this.game.metapodsHardened[this.idx]) {
       this.img.src = 'assets/images/metapod/harden_metapod.png';
       this.hardened = true;
-      // this.vel = [0, 0];
       this.HP -= 0.2;
-      if (this.HP < 1) {
-        this.faint();
-      }
+      if (this.HP < 1) this.faint();
     } else if (this.smashed) {
+      if (this.HP < 1) this.faint();
       return;
     } else {
       this.img.src = this.initImg;
       this.hardened = false;
-      // this.vel = this.initVel;
     }
   }
 
@@ -97,7 +86,7 @@ class Metapod extends MovingObject {
 
   draw(ctx) {
     this.harden();
-    this.faint();
+    // this.faint();
     this.drawShadow(ctx);
     this.drawHPBar(ctx);
     this.drawHP(ctx);
