@@ -1,11 +1,12 @@
 import Menu from './menu';
+import Game from './game';
 
 class GameView {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
     this.menu = new Menu(this);
-    this.paused = false;
+    // this.paused = false;
     this.state = "menu";
     this.gameOver = true;
     this.keys = [49, 53, 57, 8]; // maps to 1 5 9 del
@@ -20,7 +21,6 @@ class GameView {
     // this.restart = this.restart.bind(this);
     this.quit = this.quit.bind(this);
     this.animate = this.animate.bind(this);
-    
     
     this.menu.bindMenuButtons();
     this.menu.openMenu();
@@ -117,8 +117,8 @@ class GameView {
   end() {
     this.state = "victory";
     this.gameOver = true;
-    this.game.over = true;
-    this.game.reset();
+    this.game = new Game();
+    this.ctx.clearRect(0, 0, 800, 600);
 
     const victoryMenu = document.getElementById("victory");
     victoryMenu.classList.remove('close');
@@ -138,8 +138,9 @@ class GameView {
   quit() {
     this.state = "menu";
     this.gameOver = true;
-    this.game.over  = false;
-    this.game.reset();
+    
+    // this.game.over  = false;
+    // this.game.reset();
 
     if (!this.muteMusic) {
       this.victoryMusic.pause();
@@ -160,7 +161,6 @@ class GameView {
       if (this.gameOver) {
         setTimeout(() => {
           this.end();
-          this.animate = () => null;
         }, 3000);
       }
     }

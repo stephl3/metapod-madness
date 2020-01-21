@@ -113,7 +113,7 @@ class Menu {
   quitGame() {
     this.selectFX.play();
     this.closeVictoryMenu();
-    location.reload(false);
+    // location.reload(false);
     // const canvas = document.getElementById('game');
     // canvas.width = 800;
     // canvas.height = 600;
@@ -121,8 +121,8 @@ class Menu {
     // const ctx = canvas.getContext('2d');
     // const game = new Game();
     // const gameView = new GameView(game, ctx);
-    // this.openMenu();
-    // this.gameView.quit();
+    this.openMenu();
+    this.gameView.quit();
   }
 }
 

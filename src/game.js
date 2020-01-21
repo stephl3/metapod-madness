@@ -48,22 +48,29 @@ class Game {
   // }
 
   start() {
-    setTimeout(() => {
-      this.addBoulders();
-    }, 3000);
-    this.loop = () => {
-      setInterval(() => {
-        this.addBoulders();
-        setTimeout(() => {
-          this.addBoulders();
-          setTimeout(() => {
-            this.addBoulders();
-          }, 2000);
-        }, 1000);
-      }, 5000);
-    };
+    setTimeout(() => this.addBoulders(), 3000);
+    setTimeout(() => this.addBoulders(), 6000);
+    setTimeout(() => this.addBoulders(), 9000);
+    setTimeout(() => this.addBoulders(), 12000);
+    setTimeout(() => this.addBoulders(), 13000);
+    setTimeout(() => this.addBoulders(), 15000);
+    setTimeout(() => this.addBoulders(), 15500);
+    setTimeout(() => this.addBoulders(), 16000);
 
-    this.loop();
+
+    // this.loop = () => {
+    //   setInterval(() => {
+    //     this.addBoulders();
+    //     setTimeout(() => {
+    //       this.addBoulders();
+    //       setTimeout(() => {
+    //         this.addBoulders();
+    //       }, 2000);
+    //     }, 1000);
+    //   }, 5000);
+    // };
+
+    // this.loop();
   }
 
   reset() {
@@ -88,7 +95,7 @@ class Game {
         img: 'assets/images/metapod/metapod.png',
         startPosX: (metapodPositions[i][0]),
         pos: metapodPositions[i],
-        vel: [0.1, 0],
+        vel: [0, 0],
         width: 130,
         height: 130,
         game: this
