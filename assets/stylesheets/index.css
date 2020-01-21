@@ -42,7 +42,7 @@
   height: 24px;
 }
 
-#game, #menu, #victory {
+#game, #menu, #player-icons, #victory {
   position: absolute;
   overflow: hidden;
   width: 800px;
@@ -111,6 +111,9 @@
   height: 24px;
 }
 
+
+
+/* MENU */
 .modal-background {
   cursor: zoom-out;
   position: absolute;
@@ -198,6 +201,53 @@
   color: #4e4eff;
 }
 
+
+
+/* GAME */
+#player-icons {
+  z-index: 2;
+  background: transparent;
+}
+
+.player-icon {
+  position: absolute;
+  bottom: 32px;  
+  width: 48px;
+  height: 32px;
+  border-radius: 50%;
+  border: 4px solid black;
+  color: white;
+  font-family: Oxygen;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-icon.one {
+  left: 72px;
+  background-color: #0000eb;
+}
+
+.player-icon.two {
+  left: 272px;
+  background-color: green;
+}
+
+.player-icon.three {
+  right: 272px;
+  background-color: #c40000;
+}
+
+.player-icon.four {
+  right: 72px;
+  background-color: goldenrod;
+}
+
+
+
+/* VICTORY */
 #victory {
   z-index: 3;
   background-image: url('../images/background/victory.jpg');
@@ -260,7 +310,7 @@
 }
 
 .key#p1.highlight {
-  background-color: blue;
+  background-color: #0000eb;
 }
 
 .key#p2.highlight {
@@ -268,7 +318,7 @@
 }
 
 .key#p3.highlight {
-  background-color: red;
+  background-color: #c40000;
 }
 
 .key#p4.highlight {

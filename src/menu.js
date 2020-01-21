@@ -1,3 +1,5 @@
+import GameView from "./game_view";
+
 class Menu {
   constructor(gameView) {
     this.gameView = gameView;
@@ -14,6 +16,7 @@ class Menu {
     this.instructions = document.getElementById('instructions');
     this.closeButton = document.getElementById('close-button');
     this.keysButton = document.getElementById('show-keys');
+    this.keysArray = Array.from(document.getElementsByClassName('key'));
     this.keyBindingsButton = document.getElementById('key-bindings');
     
     this.victoryMenu = document.getElementById("victory");
@@ -25,6 +28,8 @@ class Menu {
     this.startGame = this.startGame.bind(this);
     this.openHowTo = this.openHowTo.bind(this);
     this.closeHowTo = this.closeHowTo.bind(this);
+    this.highlightKeys = this.highlightKeys.bind(this);
+    this.unhighlightKeys = this.unhighlightKeys.bind(this);
     this.restartGame = this.restartGame.bind(this);
     this.quitGame = this.quitGame.bind(this);
   }
@@ -35,7 +40,8 @@ class Menu {
     this.startButton.addEventListener('click', this.startGame);
     this.howToButton.addEventListener('click', this.openHowTo);
     this.closeButton.addEventListener('click', this.closeHowTo);
-    this.keysButton.addEventListener('click', this.highlightKeys);
+    this.keysButton.addEventListener('mouseenter', this.highlightKeys);
+    this.keysButton.addEventListener('mouseleave', this.unhighlightKeys);
     this.restartButton.addEventListener('click', this.restartGame);
     this.quitButton.addEventListener('click', this.quitGame);
   }
@@ -89,14 +95,11 @@ class Menu {
   }
 
   highlightKeys() {
-    const keys = document.getElementsByClassName('key');
-    debugger
-    keys.forEach(key => {
-      debugger
-      if (key.id === 'p1') {
-        key.style.color = 'white';
-      }
-    })
+    this.keysArray.forEach(key => key.classList.add('highlight'));
+  }
+
+  unhighlightKeys() {
+    this.keysArray.forEach(key => key.classList.remove('highlight'));
   }
 
   restartGame() {
@@ -108,9 +111,16 @@ class Menu {
 
   quitGame() {
     this.selectFX.play();
-    this.closeVictoryMenu();
-    this.openMenu();
-    this.gameView.quit();
+    const canvas = document.getElementById('game');
+    canvas.width = 800;
+    canvas.height = 600;
+
+    const ctx = canvas.getContext('2d');
+    const game = newGame();
+    const gameView = new GameView(game, ctx);
+    // this.closeVictoryMenu();
+    // this.openMenu();
+    // this.gameView.quit();
   }
 }
 
