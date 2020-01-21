@@ -28,7 +28,7 @@
             <!-- <div id="key-bindings" class="option">Key Bindings</div> -->
             <div id="instructions-bg">
               <div id="instructions" class="modal-child">
-                <div id="close-icon-container">
+                <div id="close-button">
                   <i class="fas fa-times" id="close-icon"></i>
                 </div>
                 <div class="title-container">
@@ -37,7 +37,7 @@
                   </div>
                 </div>
                 <div class="instruct">
-                  Press the <span class="show-keys">appropriate key</span> to HARDEN and avoid being smacked by the boulders.
+                  Press the <span id="show-keys">appropriate key</span> to HARDEN and avoid being smacked by the boulders.
                 </div>
                 <div class="instruct">
                   HARDEN only works while your key is pressed.
@@ -52,9 +52,9 @@
             </div>
           </div>
         </div>
-        <div id="pause">
+        <!-- <div id="pause">
           <i class="fas fa-pause" id="pause-icon"></i>
-        </div>
+        </div> -->
         <canvas id="game" class="loading"></canvas>
         <div id="victory" class="close">
           <div class="victory-options">
@@ -66,20 +66,22 @@
       <section id="info">
         <div class="menu-options">
           <div class="keys">
-            <div class="key">1</div>
-            <div class="key">5</div>
-            <div class="key">9</div>
-            <div class="key">del</div>
+            <div class="key" id="p1">1</div>
+            <div class="key" id="p2">5</div>
+            <div class="key" id="p3">9</div>
+            <div class="key" id="p4">del</div>
           </div>
         </div>
       <nav class="nav">
-        <div id="credit">Created by: Stephen Lee</div>
+        <div id="credit">Created by:
+          <span><a href="https://stephenlee.dev" class="link" id="portfolio" target="_blank">Stephen Lee</a></span>
+        </div>
         <div class="links">
-          <a href="https://www.google.com" class="link" target="_blank">
-            <i class="far fa-address-card" id="link1"></i></a>
+          <a href="https://stephenlee.dev" class="link" target="_blank">
+            <i class="fab fa-dev" id="link1"></i></a>
           <a href="mailto:stephen.lee.abc@gmail.com" class="link" target="_blank">
             <i class="far fa-envelope" id="link2"></i></a>
-          <a href="https://github.com/stephl3/" class="link" target="_blank">
+          <a href="https://github.com/stephl3/metapod-madness" class="link" target="_blank">
             <i class="fab fa-github" id="link3"></i></a>
           <a href="https://www.linkedin.com/in/mr-stephen-lee/" class="link" target="_blank">
             <i class="fab fa-linkedin" id="link4"></i></a>

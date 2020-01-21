@@ -8,14 +8,14 @@ class GameView {
     this.paused = false;
     this.state = "menu";
     this.gameOver = true;
-    this.keys = [192, 52, 56, 8];
+    this.keys = [49, 53, 57, 8]; // maps to 1 5 9 del
     this.muteMusic = true;
     this.setSounds();
 
     this.bindKeyHandlers = this.bindKeyHandlers.bind(this);
     this.toggleMute = this.toggleMute.bind(this);
     this.start = this.start.bind(this);
-    this.pause = this.pause.bind(this);
+    // this.pause = this.pause.bind(this);
     this.end = this.end.bind(this);
     this.restart = this.restart.bind(this);
     this.quit = this.quit.bind(this);
@@ -105,14 +105,14 @@ class GameView {
     requestAnimationFrame(this.animate);
   }
 
-  pause() {
-    this.paused = !this.paused;
-    if (!this.muteMusic) {
-      this.gameMusic.volume = 0.2;
-    } else {
-      this.gameMusic.volume = 1.0;
-    }
-  }
+  // pause() {
+  //   this.paused = !this.paused;
+  //   if (!this.muteMusic) {
+  //     this.gameMusic.volume = 0.2;
+  //   } else {
+  //     this.gameMusic.volume = 1.0;
+  //   }
+  // }
 
   end() {
     this.state = "victory";

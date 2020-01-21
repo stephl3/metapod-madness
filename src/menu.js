@@ -5,14 +5,15 @@ class Menu {
     this.closeFX = new Audio('assets/sounds/close.wav');
 
     this.soundButton = document.getElementById('sound');
-    this.pauseButton = document.getElementById('pause');
+    // this.pauseButton = document.getElementById('pause');
     
     this.menu = document.getElementById('menu');
     this.startButton = document.getElementById('start');
     this.howToButton = document.getElementById('how-to');
     this.instructionsBg = document.getElementById('instructions-bg');
     this.instructions = document.getElementById('instructions');
-    this.closeButton = document.getElementById('close-icon-container');
+    this.closeButton = document.getElementById('close-button');
+    this.keysButton = document.getElementById('show-keys');
     this.keyBindingsButton = document.getElementById('key-bindings');
     
     this.victoryMenu = document.getElementById("victory");
@@ -20,7 +21,7 @@ class Menu {
     this.quitButton = document.getElementById('quit');
 
     this.toggleSound = this.toggleSound.bind(this);
-    this.pauseGame = this.pauseGame.bind(this);
+    // this.pauseGame = this.pauseGame.bind(this);
     this.startGame = this.startGame.bind(this);
     this.openHowTo = this.openHowTo.bind(this);
     this.closeHowTo = this.closeHowTo.bind(this);
@@ -30,10 +31,11 @@ class Menu {
 
   bindMenuButtons() {
     this.soundButton.addEventListener('click', this.toggleSound);
-    this.pauseButton.addEventListener('click', this.pauseGame);
+    // this.pauseButton.addEventListener('click', this.pauseGame);
     this.startButton.addEventListener('click', this.startGame);
     this.howToButton.addEventListener('click', this.openHowTo);
     this.closeButton.addEventListener('click', this.closeHowTo);
+    this.keysButton.addEventListener('click', this.highlightKeys);
     this.restartButton.addEventListener('click', this.restartGame);
     this.quitButton.addEventListener('click', this.quitGame);
   }
@@ -47,9 +49,9 @@ class Menu {
     }
   }
 
-  pauseGame() {
-    this.gameView.pause();
-  }
+  // pauseGame() {
+  //   this.gameView.pause();
+  // }
 
   openMenu() {
     this.menu.classList.remove('close');
@@ -76,6 +78,7 @@ class Menu {
     this.instructionsBg.classList.add('modal-background');
     this.instructionsBg.addEventListener('click', this.closeHowTo);
     this.instructions.classList.remove('close')
+    this.instructions.addEventListener('click', (e) => e.stopPropagation());
   }
   
   closeHowTo() {
@@ -83,6 +86,17 @@ class Menu {
     this.instructionsBg.classList.remove('modal-background');
     this.instructionsBg.removeEventListener('click', this.closeHowTo);
     this.instructions.classList.add('close');
+  }
+
+  highlightKeys() {
+    const keys = document.getElementsByClassName('key');
+    debugger
+    keys.forEach(key => {
+      debugger
+      if (key.id === 'p1') {
+        key.style.color = 'white';
+      }
+    })
   }
 
   restartGame() {

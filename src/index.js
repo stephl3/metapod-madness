@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // gameView.playMusic();
 
-  document.body.onkeyup = function(e) {
-    e.preventDefault();
-    if (e.keyCode === 32) {
-      menu.style.display = "none";
-      gameView.start();
-      gameView.pause();
-    }
-  }
+  // document.body.onkeyup = function(e) {
+  //   e.preventDefault();
+  //   if (e.keyCode === 32) {
+  //     menu.style.display = "none";
+  //     gameView.start();
+  //     gameView.pause();
+  //   }
+  // }
 });

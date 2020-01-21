@@ -14,6 +14,7 @@
 }
 
 #canvas-container {
+  cursor: default;
   position: relative;
   background: black;
   display: inline-block;
@@ -43,6 +44,7 @@
 
 #game, #menu, #victory {
   position: absolute;
+  overflow: hidden;
   width: 800px;
   height: 600px;
   background-repeat: no-repeat;
@@ -86,7 +88,7 @@
 
 .option:hover {
   cursor: pointer;
-  color: gray;
+  color: darkolivegreen;
   text-decoration: underline;
 }
 
@@ -110,18 +112,20 @@
 }
 
 .modal-background {
-  position: fixed;
+  cursor: zoom-out;
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
 
 .modal-child {
+  cursor: default;
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: green;
@@ -136,7 +140,7 @@
   justify-content: space-between;
 }
 
-#close-icon-container {
+#close-button {
   position: absolute;
   background-color: transparent;
   box-sizing: border-box;
@@ -151,16 +155,17 @@
   color: white;
 }
 
-#close-icon-container:hover {
+#close-button:hover {
   background-color: #006300;
   color: silver;
 }
 
 #close-icon {
-  font-family: Oxygen, serif;
-  font-size: 16px;
-  font-weight: 700;
   cursor: pointer;
+  width: 16px;
+  height: 16px;
+  font-weight: 700;
+  font-family: Oxygen, serif;
 }
 
 .title-container {
@@ -183,12 +188,12 @@
   line-height: 20px;
 }
 
-.show-keys {
+#show-keys {
   cursor: help;
   color: #9d9dff;
 }
 
-.show-keys:hover {
+#show-keys:hover {
   text-decoration: underline;
   color: #4e4eff;
 }
@@ -206,6 +211,7 @@
 }
 
 #info {
+  cursor: default;
   margin-top: 20px;
   border: 1px solid black;
   background-color: rgba(41, 41, 41, 0.7);
@@ -235,7 +241,6 @@
 .key {
   width: 50px;
   text-align: center;
-  cursor: pointer;
   outline: none;
   border: 1px solid black;
   padding: 8px;
@@ -247,6 +252,27 @@
   font-weight: bolder;
   box-sizing: border-box;
   border-radius: 8px;
+}
+
+.key.highlight {
+  border: 1px solid white;
+  color: white;
+}
+
+.key#p1.highlight {
+  background-color: blue;
+}
+
+.key#p2.highlight {
+  background-color: green;
+}
+
+.key#p3.highlight {
+  background-color: red;
+}
+
+.key#p4.highlight {
+  background-color: goldenrod;
 }
 
 #pause-button {
@@ -280,10 +306,20 @@
   color: white;
   cursor: pointer;
   margin: 8px;
+  width: 24px;
+  height: 24px
 }
 
 .link:hover {
-  color: gray;
+  color: #76ff76;
+}
+
+#portfolio {
+  text-decoration: none;
+}
+
+#portfolio:hover {
+  text-decoration: underline;
 }
 
 #link1,
