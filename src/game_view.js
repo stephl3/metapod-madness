@@ -9,7 +9,7 @@ class GameView {
     this.paused = false;
     this.state = "menu";
     this.gameOver = true;
-    this.keys = [1, 5, 9, 'Backspace']; // maps to 1 5 9 del
+    this.keys = ["1", "c", "m", "="]; // maps to 1 c m =
     this.muteMusic = true;
     this.setSounds();
 
@@ -30,7 +30,6 @@ class GameView {
     
     const keyDownHandler = (e) => {
       for (let i = 0; i < 4; i++) {
-        debugger
         if (e.key == keys[i]) {
           this.game.metapodsHardened[i] = true;
         };
