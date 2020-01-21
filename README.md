@@ -110,7 +110,7 @@ move(timeDelta) {
 <p align="center">
   <img src="https://i.pinimg.com/originals/24/1d/dd/241ddd5aedb24304c1053b2b2fdff861.gif" width="100%" />
 </p>
-The `MovingObject` parent class carries the basic logic for the `Metapod`, `Boulder`, and `Shadow` classes. Along with these base methods is the `isCollidedWith(otherObject)` method which tracks if there is a collision between 2 objects.
+The `MovingObject` parent class carries the basic logic for the `Metapod`, `Boulder`, and `Shadow` classes. Along with these base methods is the `isCollidedWith(otherObject)` method which tracks if there is a collision between 2 objects. I made some slight adjustments to the collision calculations using hitboxes and slow-motion video to ensure accuracy.
 
 ```javascript
 isCollidedWith(otherObject) {
