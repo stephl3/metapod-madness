@@ -119,21 +119,22 @@ class GameView {
     this.gameOver = true;
     this.game = new Game();
     this.ctx.clearRect(0, 0, 800, 600);
-
+    
     const victoryMenu = document.getElementById("victory");
     victoryMenu.classList.remove('close');
     if (!this.muteMusic) {
       this.gameMusic.pause();
+      this.gameMusic.currentTime = 0;
       this.victoryMusic.play();
     }
   }
 
-  // restart() {
-  //   this.state = "game";
-  //   this.gameOver = false;
-  //   this.game.over = false;
-  //   this.game.reset();
-  // }
+  restart() {
+    this.state = "game";
+    this.gameOver = false;
+    this.game.over = false;
+    this.game.reset();
+  }
 
   quit() {
     this.state = "menu";

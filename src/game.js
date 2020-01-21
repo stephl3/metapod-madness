@@ -18,7 +18,6 @@ class Game {
     this.shadows = [];
 
     this.start = this.start.bind(this);
-    this.reset = this.reset.bind(this);
     this.addMetapods = this.addMetapods.bind(this);
     this.addBoulders = this.addBoulders.bind(this);
     this.addBerries = this.addBerries.bind(this);
@@ -71,14 +70,6 @@ class Game {
     // };
 
     // this.loop();
-  }
-
-  reset() {
-    this.metapods = [];
-    this.metapodsHardened = [false, false, false, false];
-    this.boulders = [];
-    this.berries = [];
-    this.shadows = [];
   }
 
   addMetapods() {

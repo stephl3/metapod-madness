@@ -21,7 +21,7 @@ class Menu {
     this.keyBindingsButton = document.getElementById('key-bindings');
     
     this.victoryMenu = document.getElementById("victory");
-    // this.restartButton = document.getElementById('restart');
+    this.restartButton = document.getElementById('restart');
     this.quitButton = document.getElementById('quit');
 
     this.toggleSound = this.toggleSound.bind(this);
@@ -31,7 +31,7 @@ class Menu {
     this.closeHowTo = this.closeHowTo.bind(this);
     this.highlightKeys = this.highlightKeys.bind(this);
     this.unhighlightKeys = this.unhighlightKeys.bind(this);
-    // this.restartGame = this.restartGame.bind(this);
+    this.restartGame = this.restartGame.bind(this);
     this.quitGame = this.quitGame.bind(this);
   }
 
@@ -43,7 +43,7 @@ class Menu {
     this.closeButton.addEventListener('click', this.closeHowTo);
     this.keysButton.addEventListener('mouseenter', this.highlightKeys);
     this.keysButton.addEventListener('mouseleave', this.unhighlightKeys);
-    // this.restartButton.addEventListener('click', this.restartGame);
+    this.restartButton.addEventListener('click', this.restartGame);
     this.quitButton.addEventListener('click', this.quitGame);
   }
 
@@ -103,24 +103,15 @@ class Menu {
     this.keysArray.forEach(key => key.classList.remove('highlight'));
   }
 
-  // restartGame() {
-  //   this.selectFX.play();
-  //   this.closeVictoryMenu();
-  //   location.reload(false);
-  //     .then(() => document.findElementById('start').click());
-  // }
+  restartGame() {
+    this.startGame();
+    this.closeVictoryMenu();
+  }
 
   quitGame() {
     this.selectFX.play();
     this.closeVictoryMenu();
-    // location.reload(false);
-    // const canvas = document.getElementById('game');
-    // canvas.width = 800;
-    // canvas.height = 600;
-
-    // const ctx = canvas.getContext('2d');
-    // const game = new Game();
-    // const gameView = new GameView(game, ctx);
+    
     this.openMenu();
     this.gameView.quit();
   }

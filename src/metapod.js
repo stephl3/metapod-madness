@@ -60,42 +60,39 @@ class Metapod extends MovingObject {
   }
 
   smash() {
-    // debugger;
     this.smashed = true;
     setTimeout(() => {
       this.smashed = false;
     }, 350);
+
+    this.img.src = 'assets/images/metapod/hurt_metapod2.png';
+    setTimeout(() => {
+      this.img.src = 'assets/images/metapod/hurt_metapod4.png';
+      setTimeout(() => {
+        this.img.src = 'assets/images/metapod/hurt_metapod2.png';
+        setTimeout(() => {
+          this.img.src = 'assets/images/metapod/metapod.png'
+          setTimeout(() => {
+            this.img.src = 'assets/images/metapod/hurt_metapod2.png'
+            setTimeout(() => {
+              this.img.src = 'assets/images/metapod/hurt_metapod4.png'
+              setTimeout(() => {
+                this.img.src = 'assets/images/metapod/hurt_metapod2.png'
+                setTimeout(() => {
+                  this.img.src = 'assets/images/metapod/metapod.png'
+                }, 350);
+              }, 300);
+            }, 250);
+          }, 200);
+        }, 150);
+      }, 100);
+    }, 50);
 
     if (this.HP > 30) {
       this.HP -= 30;
     } else {
       this.HP = 0;
     }
-
-    setTimeout(() => {
-      this.img.src = 'assets/images/metapod/hurt_metapod2.png';
-      setTimeout(() => {
-        this.img.src = 'assets/images/metapod/hurt_metapod4.png';
-        setTimeout(() => {
-          this.img.src = 'assets/images/metapod/hurt_metapod2.png';
-          setTimeout(() => {
-            this.img.src = 'assets/images/metapod/metapod.png'
-            setTimeout(() => {
-              this.img.src = 'assets/images/metapod/hurt_metapod2.png'
-              setTimeout(() => {
-                this.img.src = 'assets/images/metapod/hurt_metapod4.png'
-                setTimeout(() => {
-                  this.img.src = 'assets/images/metapod/hurt_metapod2.png'
-                  setTimeout(() => {
-                    this.img.src = 'assets/images/metapod/metapod.png'
-                  }, 330);
-                }, 300);
-              }, 240);
-            }, 210);
-          }, 150);
-        }, 120);
-      }, 60);
-    }, 30);
   }
 
   draw(ctx) {
