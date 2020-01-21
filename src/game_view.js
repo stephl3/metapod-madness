@@ -121,7 +121,7 @@ class GameView {
     this.state = "victory";
     this.paused = true;
     this.gameOver = true;
-    this.winner = this.game.winner.idx + 1;
+    this.winner = this.game.winner + 1;
     this.game = new Game();
     this.ctx.clearRect(0, 0, 800, 600);
 
@@ -162,12 +162,12 @@ class GameView {
     // every call to animate requests causes another call to animate
     if (!this.paused) {
       requestAnimationFrame(this.animate);
-    }
-    if (this.gameOver) {
-      setTimeout(() => {
+      if (this.gameOver) {
         this.paused = true;
-        this.end();
-      }, 2000);
+        setTimeout(() => {
+          this.end();
+        }, 1000);
+    }
     }
   }
 };

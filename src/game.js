@@ -225,9 +225,11 @@ class Game {
         this.losers.push(metapodIdx);
       }
     });
-    
+
     if (this.losers.length >= 3) {
-      this.winner = this.metapods.find(metapod => !metapod.fainted);
+      const winner = this.metapods.find(metapod => !metapod.fainted);
+      debugger
+      this.winner = (winner) ? winner.idx : this.losers[3];
       return true;
     } else {
       return false;
