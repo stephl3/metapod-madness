@@ -36,7 +36,7 @@ animate(time) {
 <p align="center">
   <img src="https://i.pinimg.com/originals/a4/6d/82/a46d82a055421f3ec7fa5f29cd99e309.gif" width="100%" />
 </p>
-The keys used by each player are initialized in the `GameView` constructor function as `this.keys = ["1", "c", "m", "="];` Once the game is started, the Metapod objects are added to the `Game` logic with their Harden moves being bound with the selected keys. The menu has an informative "How to Play" modal with a mouse effect added to help users identify which key to use for their respective Metapod.
+The keys used by each player are initialized in the `GameView` constructor function as `this.keys = ["1", "c", "m", "="];` Once the game is started, the Metapod objects are added to the `Game` logic with their Harden moves then bound to the designated keys. The menu has an informative "How to Play" modal with a mouse effect added to help users identify which key to use for their respective Metapod.
 
 ```javascript
 bindKeyHandlers () {
