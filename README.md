@@ -146,8 +146,8 @@ The `MovingObject` parent class carries the basic logic for the `Metapod`, `Boul
   ```
 </details>
 
-#### React Lite
-Borrowing logic from `React.js`, I weaved a state attribute into my `GameView` constructor function, initializing state accordingly: `this.state = "menu";` Each state is tied to different absolutely positioned z-index planes which allow for a more holistic gaming experience.
+#### Layering Screens
+An issue that I came across with using HTML5 Canvas was layering my Canvas element with the game's menu and victory screens. To solve this, I weaved a state attribute into my `GameView` constructor function, initializing state accordingly: `this.state = "menu";` Each state is tied to different absolutely positioned z-index planes which allow for a more holistic gaming experience.
 
 Upon clicking "Start Game" on the menu screen, `this.state = "game";` which introduces the main Canvas element displaying all the Metapods and launching boulders. Once at least 3 Metapods have fainted, `this.state = "victory";` which then transitions the game into the victory screen.
 <p align="center">
