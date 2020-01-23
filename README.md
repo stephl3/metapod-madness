@@ -42,6 +42,7 @@ The `animate(time)` method in the `GameView` class minimizes graphic rendering l
 </p>
 The keys used by each player are initialized in the `GameView` constructor function as `this.keys = ["1", "c", "m", "="];` Once the game is started, the Metapod objects are added to the `Game` logic with their Harden moves then bound to the designated keys. The menu has an informative "How to Play" modal with a mouse effect added to help users identify which key to use for their respective Metapod.
 
+
 <details>
   <summary>Click to expand code snippet</summary>
   
@@ -129,6 +130,7 @@ The boulders spawn at various points closer to the vertical center of the canvas
   <img src="https://i.pinimg.com/originals/24/1d/dd/241ddd5aedb24304c1053b2b2fdff861.gif" width="85%" />
 </p>
 The `MovingObject` parent class carries the basic logic for the `Metapod`, `Boulder`, and `Shadow` classes. Along with these base methods is the `isCollidedWith(otherObject)` method which tracks if there is a collision between 2 objects. I made some slight adjustments to the collision calculations using hitboxes and slow-motion video to ensure accuracy.
+
 
 <details>
   <summary>Click to expand code snippet</summary>
