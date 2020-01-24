@@ -136,7 +136,7 @@
   border: 4px ridge white;
   padding: 16px;
   height: 240px;
-  width: 480px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
