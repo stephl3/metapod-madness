@@ -326,39 +326,38 @@
 
 .key {
   width: 50px;
+  height: 50px;
   text-align: center;
   outline: none;
+  box-sizing: border-box;
+  border-radius: 8px;
   border: 1px solid black;
-  padding: 8px;
   margin: 10px;
-  background-color: silver;
-  color: black;
+  padding: 8px;
+  line-height: 32px;
+  color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   font-weight: bolder;
-  box-sizing: border-box;
-  border-radius: 8px;
+}
+
+.key#p1 {
+  background-color: #0000eb;
+}
+
+.key#p2 {
+  background-color: green;
+}
+.key#p3 {
+  background-color: #c40000;
+}
+.key#p4 {
+  background-color: goldenrod;
 }
 
 .key.highlight {
   border: 1px solid white;
   color: white;
-}
-
-.key#p1.highlight {
-  background-color: #0000eb;
-}
-
-.key#p2.highlight {
-  background-color: green;
-}
-
-.key#p3.highlight {
-  background-color: #c40000;
-}
-
-.key#p4.highlight {
-  background-color: goldenrod;
 }
 
 #pause-button {

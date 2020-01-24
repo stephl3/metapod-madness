@@ -44,8 +44,8 @@ class GameView {
       };
     };
 
-    document.addEventListener("keydown", keyDownHandler, false)
-    document.addEventListener("keyup", keyUpHandler, false)
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
   };
 
   setSounds() {
@@ -164,12 +164,10 @@ class GameView {
       requestAnimationFrame(this.animate);
       if (this.gameOver) {
         this.paused = true;
-        setTimeout(() => {
-          this.end();
-        }, 1000);
-    }
-    }
-  }
+        setTimeout(() => this.end(), 1000);
+      };
+    };
+  };
 };
 
 export default GameView;

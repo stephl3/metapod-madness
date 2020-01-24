@@ -48,11 +48,9 @@ class Boulder extends MovingObject {
           break;
         default:
           break;
-      }
-    }
-    //  else if (this.pos[1] > 700) {
-    //   this.remove(this);
-    // };
+      };
+    };
+
     super.move(timeDelta);
   }
 
