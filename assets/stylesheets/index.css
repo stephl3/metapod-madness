@@ -324,7 +324,7 @@
   text-align: center;
   box-sizing: border-box;
   border-radius: 4px;
-  border: 1px solid black;
+  border: 2px solid black;
   padding-top: 9px;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -346,10 +346,30 @@
   background-color: goldenrod;
 }
 
-.key.highlight {
-  border: 1px solid white;
-  color: white;
+
+@-webkit-keyframes blinkBorder {
+  from, to {
+    border: 2px solid black;
+  }
+  50% {
+    border: 2px solid white;
+  }
 }
+
+@keyframes blinkBorder {
+  from, to {
+    border: 2px solid black;
+  }
+  50% {
+    border: 2px solid white;
+  }
+}
+
+.highlight {
+  -webkit-animation: blinkBorder 1s step-end infinite;
+  animation: blinkBorder 1s step-end infinite;
+}
+
 
 #pause-button {
   position: absolute;
