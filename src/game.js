@@ -228,7 +228,6 @@ class Game {
 
     if (this.losers.length >= 3) {
       const winner = this.metapods.find(metapod => !metapod.fainted);
-      debugger
       this.winner = (winner) ? winner.idx : this.losers[3];
       return true;
     } else {

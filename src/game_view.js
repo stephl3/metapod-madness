@@ -118,19 +118,22 @@ class GameView {
   // }
 
   end() {
-    this.state = "victory";
-    this.paused = true;
-    this.gameOver = true;
-    this.winner = this.game.winner + 1;
-    this.game = new Game();
-    this.ctx.clearRect(0, 0, 800, 600);
-
-    const victoryMenu = document.getElementById("victory");
-    victoryMenu.classList.remove('close');
-
-    const victorious = victoryMenu.lastElementChild;
-    victorious.innerHTML = `<div>P${this.winner}</div>`;
-    victorious.classList.add(`p${this.winner}`);
+    setTimeout(() => {
+      this.paused = true;
+      this.state = "victory";
+      this.gameOver = true;
+      this.winner = this.game.winner + 1;
+      this.game = new Game();
+      this.ctx.clearRect(0, 0, 800, 600);
+  
+      const victoryMenu = document.getElementById("victory");
+      victoryMenu.classList.remove('close');
+  
+      const victorious = victoryMenu.lastElementChild;
+      victorious.innerHTML = `<div>P${this.winner}</div>`;
+      victorious.classList.add(`p${this.winner}`);
+      
+    }, 1500);
 
     if (!this.muteMusic) {
       this.gameMusic.pause();
@@ -163,8 +166,7 @@ class GameView {
     if (!this.paused) {
       requestAnimationFrame(this.animate);
       if (this.gameOver) {
-        this.paused = true;
-        setTimeout(() => this.end(), 1000);
+        this.end();
       };
     };
   };
