@@ -1,5 +1,6 @@
-# [Metapod Madness](https://stephl3.github.io/metapod-madness/)
-Metapod Madness is a 4-player minigame drawing inspiration from the N64 classic, [Pokemon Stadium](https://en.wikipedia.org/wiki/Pok%C3%A9mon_Stadium), remastered in the form of a web application. Avoid damage from the boulders being launched at your cuddly cocoon pokemon by using its only move, Harden. However, be careful about overusing Harden since it will gradually drain your HP. Compete with your friends to see whose coordination is the fittest... last one standing wins!
+<h1><a href="https://stephl3.github.io/metapod-madness/" target="_blank">Metapod Madness</a></h1>
+
+Metapod Madness is a 4-player minigame drawing inspiration from the N64 classic, <a href="https://en.wikipedia.org/wiki/Pok%C3%A9mon_Stadium" target="_blank">Pokemon Stadium</a>, remastered in the form of a web application. Avoid damage from the boulders being launched at your cuddly cocoon pokemon by using its only move, Harden. However, be careful about overusing Harden since it will gradually drain your HP. Compete with your friends to see whose coordination is the fittest... last one standing wins!
 <p align="center">
   <img src="https://i.pinimg.com/originals/6e/5c/3c/6e5c3cee89aeb1bfc098c133d44ddd32.gif" width="85%" />
 </p>
