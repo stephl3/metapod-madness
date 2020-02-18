@@ -122,9 +122,7 @@ class GameView {
       this.paused = true;
       this.state = "victory";
       this.gameOver = true;
-      this.winner = this.game.winner + 1;
-      this.game = new Game();
-      this.ctx.clearRect(0, 0, 800, 600);
+      this.winner = this.game.winner;
   
       const victoryMenu = document.getElementById("victory");
       victoryMenu.classList.remove('close');
@@ -145,6 +143,8 @@ class GameView {
   quit() {
     this.state = "menu";
     this.gameOver = true;
+    this.game = new Game();
+    this.ctx.clearRect(0, 0, 800, 600);
     
     // this.game.over  = false;
     // this.game.reset();

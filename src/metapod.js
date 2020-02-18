@@ -37,7 +37,7 @@ class Metapod extends MovingObject {
     if (this.game.metapodsHardened[this.idx]) {
       this.img.src = 'assets/images/metapod/harden_metapod.png';
       this.hardened = true;
-      this.HP -= 0.2;
+      this.HP -= 20;
       if (this.HP < 1) this.faint();
     } else if (this.smashed) {
       if (this.HP < 1) this.faint();

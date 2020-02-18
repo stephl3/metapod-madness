@@ -227,8 +227,8 @@ class Game {
     });
 
     if (this.losers.length >= 3) {
-      const winner = this.metapods.find(metapod => !metapod.fainted);
-      this.winner = (winner) ? winner.idx : this.losers[3];
+      const winnerIdx = this.metapods.findIndex(metapod => !metapod.fainted);
+      this.winner = (winnerIdx > -1) ? winnerIdx+1 : this.losers[3]+1;
       return true;
     } else {
       return false;

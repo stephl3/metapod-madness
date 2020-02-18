@@ -105,8 +105,9 @@ class Menu {
   }
 
   restartGame() {
-    this.startGame();
+    this.quitGame();
     this.closeVictoryMenu();
+    setTimeout(() => this.startGame(), 200);
   }
 
   quitGame() {
